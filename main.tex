@@ -1,0 +1,75 @@
+\documentclass[12pt, letterpaper, oneside, openany draft, spanish]{book} % book for the frontmatter and mainmatter
+\title{Pasantia}
+\author{José Ricardo Pascarella Quijada} 
+\date{\today}
+
+\usepackage[spanish]{babel} %Lenguaje Español
+\usepackage[utf8]{inputenc} %Paquete para escribir acentos y otros símbolos directamente
+
+% for development %
+% \includeonly{capitulos/1.tex}
+
+% \usepackage{syntonly}
+% \syntaxonly
+
+\pagestyle{headings}
+\linespread{1.3} % Entre lineas de 1,5. Lo se, es raro
+
+\setlength{\parskip}{10pt} % Doble espacio entre parrafos !!!!!!!!!!!!! Medir esto con un word
+
+\usepackage[left=3cm,top=2cm,right=2cm,bottom=2cm,bindingoffset=0.5cm]{geometry} 
+
+\usepackage{titlesec}
+\titleformat{\chapter}[display]   
+{\normalfont\large\bfseries}{\chaptertitlename\ \thechapter}{14pt}{\large}   
+\titlespacing*{\chapter}{0pt}{-50pt}{40pt}
+
+
+\begin{document}
+
+\frontmatter % Numeracion Romana
+
+\maketitle
+
+\tableofcontents % Indice
+
+\mainmatter % Comienzo de numeracion arabica
+
+\include{capitulos/1}
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\end{document}
