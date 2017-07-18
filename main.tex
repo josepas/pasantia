@@ -1,13 +1,22 @@
 \documentclass[12pt, letterpaper, oneside, openany draft, spanish]{book} % book for the frontmatter and mainmatter
+
+\pagestyle{myheadings} % para solo tener los numeros en el tope
+
+\linespread{1.3} % Entre lineas de 1,5. Lo se, es raro
+
+\setlength{\parskip}{10pt} % Doble espacio entre parrafos !!!!!!!!!!!!! Medir esto con un word
+
 \title{Pasantia}
 \author{José Ricardo Pascarella Quijada} 
 \date{\today}
 
+\usepackage[left=3cm,top=2cm,right=2cm,bottom=2cm,bindingoffset=0.5cm]{geometry} 
+\usepackage{xcolor,graphicx}
 \usepackage[spanish]{babel} %Lenguaje Español
 \usepackage[utf8]{inputenc} %Paquete para escribir acentos y otros símbolos directamente
 
 % for development %
-% \includeonly{capitulos/1, Introduccion}
+\includeonly{Resumen}
 
 % \usepackage{syntonly}
 % \syntaxonly
@@ -26,15 +35,6 @@
 % \Huge         	25pt
 
 
-\pagestyle{myheadings} % para solo tener los numeros en el tope
-
-\linespread{1.3} % Entre lineas de 1,5. Lo se, es raro
-
-\setlength{\parskip}{10pt} % Doble espacio entre parrafos !!!!!!!!!!!!! Medir esto con un word
-
-\usepackage[left=3cm,top=2cm,right=2cm,bottom=2cm,bindingoffset=0.5cm]{geometry} 
-\usepackage{xcolor,graphicx}
-
 % Capitulos en tamano 14 negrita, centrados con el nombre abajo y en mayusculas
 \usepackage{titlesec}
 \titleformat{\chapter}[display]   
@@ -45,6 +45,16 @@
 \titleformat*{\section}{\normalsize\bfseries}
 
 \titleformat*{\subsection}{\normalsize\bfseries}
+
+\newenvironment{dedication}
+  {\vspace*{\stretch{1}}% some space at the top 
+   \itshape             % the text is in italics
+   \raggedleft          % flush to the right margin
+  }
+  {\par % end the paragraph
+   \vspace{\stretch{3}} % space at bottom is three times that at the top
+   \clearpage           % finish off the page
+  }
 
 \begin{document}
 
