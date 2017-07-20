@@ -1,18 +1,22 @@
 \chapter*{Introducción}
 \thispagestyle{empty} % Quitar el número
 \addcontentsline{toc}{chapter}{Introducción} \markboth{INTRODUCCIÓN}{}
-El presente documento describe el proceso de desarrollo del módulo de encuentros presenciales para un SAG (Sistema de Gestión de Aprendizaje) para Fischer Knoblauch \& Co como proyecto de pasantías realizado por su autor.
+El presente documento describe el proceso de desarrollo del módulo de encuentros presenciales para un SAG (Sistema de Gestión de Aprendizaje) para Fischer Knoblauch \& Co (FKC) como proyecto de pasantías realizado por su autor.
 
 \section*{Antecedentes}
 \addcontentsline{toc}{section}{Antecedentes}
-
+El SGA básico de FKC es un producto que soporta las funciones basicas de cualquier sistema de gestión aprendizaje simple. Como lo son: manejo de usuarios y contenidos; segimiento del proceso de aprendizaje, evaluaciones y herramientas de comunicación como foros y mensajes privados. Este sistema es personalizado e instalado generalmente en la infraestructura del cliente según sus necesidades.
 
 \section*{Justificación e importancia}
 \addcontentsline{toc}{section}{Justificación e importancia}
+Entre las funciones convencionales de los SGA actuales se encuentra el manejo de encuentros presenciales, funcionalidad considerada como necesaria por actuales y potenciales clientes. Siendo estos encuentros de importancia crítica para el flujo del conocimiento de mediana a alta complejidad que no puede ser expresado facilmente por medio de cursos en linea. Por lo tanto, es de interés para la compañia poseer esta funcionalidad en su sistema.
 
 
 \section*{Planteamiento del problema}
 \addcontentsline{toc}{section}{Planteamiento del problema}
+Se identificó la necesidad de extender el sistema de FKC con un módulo que le permita a sus clientes gestionar encuentros presenciales entre instructores y estudiantes. Al mismo tiempo este módulo debía adaptarse a la estructura de cursos y grupos previamente existente en el sistema trantando de incluir la menor complejidad posible para su futura extensión y personalización.
+
+Para lograr esto, es necesario un profundo entendimiento del producto, con el fin de desarrollar un módulo que mantenga el mismo estilo tanto en la programacion, como en el funcionamiento y la interfaz. 
 
 
 \section*{Objetivos}
@@ -21,10 +25,24 @@ A continuación, se exponen los objetivos generales y específicos que se busca 
 
 \subsection*{Objetivo general}
 \addcontentsline{toc}{subsection}{Objetivo general}
-
+El objetivo general de este proyecto es desarrollar un módulo que permita extender el sistema de gestión de aprendizaje con un módulo que lo acerque a contener las funciones convencionales de los sistemas en la actualidad y que al mismo tiempo posea la flexibilidad de ser personalizado para las distintas necesidades de los clientes o hasta no ser incluido de no ser necesario.
 
 \subsection*{Objetivos específicos}
 \addcontentsline{toc}{subsection}{Objetivos específicos}
+Extender la Base de Datos para el soporte del módulo.
+
+Desarrollo de un módulo que permita el manejo de las locaciones donde se imparten los seminarios por parte del administrador.
+
+Integrar el nuevo tipo de curso a las funcionalidades previas de administrador sobre otros tipos de cursos, como estadísticas y asignación a grupos.
+
+Creación de un nuevo tipo de usuario, instructor, que tenga potestad sobre los seminarios.
+
+Integrar el nuevo tipo de cursos en la interfaz del estudiante del sistema.
+
+Integrar el módulo tanto en el sistema base de FKC como en uno de los clientes que poseen un versión personalizada del sistema.
+
+
+
 
 
 
