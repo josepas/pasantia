@@ -1,10 +1,10 @@
-\documentclass[12pt, letterpaper, oneside, openany draft, spanish]{book} % book for the frontmatter and mainmatter
+\documentclass[12pt, letterpaper, oneside, openany, spanish]{book} % book for the frontmatter and mainmatter
 
 \pagestyle{myheadings} % para solo tener los numeros en el tope
 
 \linespread{1.3} % Entre lineas de 1,5. Lo se, es raro
 
-\setlength{\parskip}{10pt} % Doble espacio entre parrafos !!!!!!!!!!!!! Medir esto con un word
+\setlength{\parskip}{10pt} % Doble espacio entre parrafos !!!!! Medir esto con un word
 
 \title{Pasantia}
 \author{José Ricardo Pascarella Quijada} 
@@ -15,11 +15,11 @@
 \usepackage[spanish]{babel} %Lenguaje Español
 \usepackage[utf8]{inputenc} %Paquete para escribir acentos y otros símbolos directamente
 
-% for development %
-\includeonly{capitulos/4}
+\usepackage{biblatex}
+\addbibresource{Bibliografia.bib}
 
-% \usepackage{syntonly}
-% \syntaxonly
+% for development %
+\includeonly{capitulos/5, Conclusiones}
 
 % Tamanos de las fuentes
 % 12pt option
@@ -63,7 +63,7 @@
 \begin{document}
 
 \frontmatter % Numeracion Romana
-
+ 
 \include{Caratula}
 
 \include{Portada}
@@ -80,8 +80,6 @@
 
 \listoffigures
 
-% \listof
-
 \mainmatter % Comienzo de numeracion arabica
 
 \include{Introduccion}
@@ -93,5 +91,13 @@
 \include{capitulos/3}
 
 \include{capitulos/4}
+
+\include{capitulos/5}
+
+\include{Conclusiones}
+
+\cite{DUMMY:1}
+
+\printbibliography
 
 \end{document}
