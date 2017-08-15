@@ -18,8 +18,10 @@
 \usepackage{biblatex}
 \addbibresource{Bibliografia.bib}
 
+\usepackage[toc,page]{appendix}
+
 % for development %
-\includeonly{capitulos/5}
+\includeonly{capitulos/5, Apendices}
 
 % Tamanos de las fuentes
 % 12pt option
@@ -90,5 +92,8 @@
 	\include{Conclusiones}
 
 	% \printbibliography
+
+	\appendix
+	\include{Apendices}
 
 \end{document}
