@@ -1,6 +1,44 @@
 \section{Primer Sprint} % (fold)
 \label{sec:primer_sprint}
 
-Hola papi soy el primer sprint
+\subsection{Objetivos}
 
-% section primer_sprint (end)
+\begin{itemize}
+	\item Familiarizarse con el ambiente de trabajo de la empresa.
+	\item Aprender a usar el lenguaje de programación PHP y sus buenas prácticas.
+	\item Analizar a fondo el funcionamiento del SGA a extender.
+	\item Levantamiento de requerimientos del proyecto a realizar.
+\end{itemize}
+
+\subsection{Actividades} % (fold)
+\label{sub:actividades}
+
+\subsubsection{Familiarización con las herramientas}
+
+El pasante no poseía experiencia previa con el lenguaje de progamación usado en la empresa, PHP, por lo que se acordó la exploración de referenicas sobre el funcionamineto y el correcto uso de dicho lenguaje.
+
+Se usaron disntintos recursos tanto literarios como web, mayormente la página web que contiene la documentación oficial del lenguaje como referencia.
+
+\subsubsection{Análisis a fondo el funcionamineto del SGA}
+
+Para esto el pasante tuvo que instalar las herramientas comunes de desarrollo en inglés, puesto que recibió un ambiente completamente en alemán. Entre estos: sistema operativo, manejador de las distintas bases de datos Microsoft SQL y Microsoft Access, y el navegador.
+
+Una vez instalado el ambiente de desarrollo adecuado el pasante procedió a explorar el sistema. Rápidamente se dió cuenta que el código fuente escrito estaba muy desorganizado. Código alto acoplamiento en el que se mezclaban lógica del negocio con la presentación. constante uso de instrucciones SQL construidas dentro de cada vista suseptibles a inyecciones de SQL. Muy bajo reuso de código a lo largo de la aplicación y técnicas de programación desactualizadas para el código PHP escrito en la actualidad especialmente al momento de recuperar información de la base de datos. El código fuente no describía ninguno de los patrones de diseño que podían ayudar para la construcción de sistemas de este tipo, como composición, observador, entre otros. No existía para el sistema en cuestión ningun tipo de pruebas, ni documentación que apoyara al pasante en esta exploración.
+
+Se descubrió el uso del lenguaje de maquetado Smarty que permite la separación de la capa lógica y la de presentación y se procedió a conseguir referencias para el aprendizaje de esta libreria.
+
+Se estudió además el esquema de la base de datos usando la herramiente SQL Management studio que genera automaticamente un esquema visual de la base datos, donde se buscó entender los patrones con los que fue construida con el fin de mantener consistencia en las nuevas funcionalidades a desarrollar. Entre estas, implementación de las relaciones entre tablas, nombramiento de los campos, asi como el tipo y tamaño de los mismos.
+
+Asimismo se analizó la estructura de los archivos, para mantener la misma estructura con la que estaban ordenados, separando los distintos componentes de la aplicación como archivos de código PHP, Javascript, CSS y archivos estáticos. Se evidenció una estructura en el nombramiento de los archivos que se siguió a lo largo del desarrollo, colocando primero el nombre de lo que podría llamarse módulo y luego la acción específica dentro del mismo, por ejemplo: seminar\_session\_create, seminar\_session\_update, location\_create, etc.
+
+\subsubsection{Levantamiento de requerimientos}
+
+Al terminar el analisis de la base de código y entender a grandes rasgos su funcionamiento y estructura se procedió a hacer el levantamiento de los requerimientos necesarios para la extensión. El objetivo era dividir el proyecto en piezas de funcionalidad con el fin de obtener una visión más clara y objetiva de las necesidades del cliente, asi como un mapa que permitiera al pasante crear un plan y una estimación para la realización del proyecto. De esta reunión surgio el diagrama de casos de uso.
+
+
+
+
+
+
+
+% subsection actividades (end)

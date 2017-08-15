@@ -6,7 +6,7 @@
 
 \setlength{\parskip}{10pt} % Doble espacio entre parrafos !!!!! Medir esto con un word
 
-\title{Pasantia}
+\title{Libro de pasantía Abril-Septiembre 2017}
 \author{José Ricardo Pascarella Quijada} 
 \date{\today}
 
@@ -19,7 +19,7 @@
 \addbibresource{Bibliografia.bib}
 
 % for development %
-\includeonly{capitulos/5, Conclusiones}
+\includeonly{capitulos/5}
 
 % Tamanos de las fuentes
 % 12pt option
@@ -33,7 +33,6 @@
 % \LARGE         	20pt
 % \huge         	25pt	
 % \Huge         	25pt
-
 
 % Capitulos en tamano 14 negrita, centrados con el nombre abajo y en mayusculas
 \usepackage{titlesec}
@@ -62,42 +61,34 @@
 
 \begin{document}
 
-\frontmatter % Numeracion Romana
- 
-\include{Caratula}
+	\frontmatter % Numeracion Romana
+	 
+	\include{Caratula}
+	\include{Portada}
 
-\include{Portada}
+	\include{ActaEvaluacion}
 
-\include{ActaEvaluacion}
+	\include{Resumen}
 
-\include{Resumen}
+	\include{Dedicatoria}
+	\include{Agradecimientos}
 
-\include{Dedicatoria}
+	\tableofcontents % Indice
 
-\include{Agradecimientos}
+	\listoffigures
 
-\tableofcontents % Indice
+	\mainmatter % Comienzo de numeracion arabica
 
-\listoffigures
+	\include{Introduccion}
 
-\mainmatter % Comienzo de numeracion arabica
+	\include{capitulos/1}
+	\include{capitulos/2}
+	\include{capitulos/3}
+	\include{capitulos/4}
+	\include{capitulos/5}
 
-\include{Introduccion}
+	\include{Conclusiones}
 
-\include{capitulos/1}
-
-\include{capitulos/2}
-
-\include{capitulos/3}
-
-\include{capitulos/4}
-
-\include{capitulos/5}
-
-\include{Conclusiones}
-
-\cite{DUMMY:1}
-
-\printbibliography
+	% \printbibliography
 
 \end{document}
