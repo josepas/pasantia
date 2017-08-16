@@ -20,7 +20,7 @@ Para soportar esta funcionalidad en la base de datos se creo una tabla llamada u
 
 Se acordó que el manejo de las ubicaciones se llevara acabo en el área de administración de la aplicación, por el usuario administrador. Se agrego una nueva entrada de manejo de ubicaciones en la interfaz del adminstrador con este fin.
 
-Se procedió entonces a la construcción de interfaces que permitieran la creación de una ubicación nueva, listar las ubicaciones existentes, modificar una ubicación existente tanto como eliminar una ubicación. Se hizo enfasis en que las interfaces creadas siguieran un aspecto consistente con las otras funciones de administración.
+Se procedió entonces a la construcción de interfaces que permitieran la creación de una ubicación nueva, listar las ubicaciones existentes, modificar una ubicación existente tanto como eliminar una ubicación. Se hizo enfasis en que las interfaces creadas siguieran un aspecto consistente con las otras funciones de administración ilustradas en los apendices \ref{fig:listarUbicaciones} y \ref{fig:editarUbicaciones}.
 
 \subsubsection{Integración con google maps}
 
@@ -29,6 +29,8 @@ Al terminar la funcionalidad básica el dueño del producto sugirió integrar la
 Para mantener el uso de esta funcionalidad de manera gratuita para la empresa el usuario debia ingresar los valores de latitud y longitud de la ubicación deseada, para esto el pasante ofreció como solución analizar gramaticalmente la URL mostrada en la aplicación web google maps por medio de expresiones regulares para extraer los valores necesarios, facilitando así al usuario el proceso de agregar una ubicación sin que la empresa tuviera que usar las funcionalidades pagas de google.
 
 Se recomienda en un futuro el pago de este API (Javascript de google maps) si se desea facilitar aun más la interación con mapas dentro de la aplicación. Con el beneficio de no depender que en algun momento el proveedor google modifique la estructura de sus URL o desaparezca los datos de latitud y longitud de las mismas.
+
+En el anexo \ref{fig:editarUbicaciones} se muestra como se integro el mapa a la vista de editar ubicación.
 
 
 
