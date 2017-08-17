@@ -15,6 +15,9 @@
 \usepackage[spanish]{babel} %Lenguaje Español
 \usepackage[utf8]{inputenc} %Paquete para escribir acentos y otros símbolos directamente
 
+\usepackage[acronym]{glossaries}
+\loadglsentries[main]{abreviaturas}
+
 \usepackage{biblatex}
 \addbibresource{Bibliografia.bib}
 
@@ -65,35 +68,35 @@
 
 	\frontmatter % Numeracion Romana
 	 
-	\include{Caratula}
-	\include{Portada}
+		\include{Caratula}
+		\include{Portada}
 
-	\include{ActaEvaluacion}
+		\include{ActaEvaluacion}
 
-	\include{Resumen}
+		\include{Resumen}
 
-	\include{Dedicatoria}
-	\include{Agradecimientos}
+		\include{Dedicatoria}
+		\include{Agradecimientos}
 
-	\tableofcontents % Indice
-
-	\listoffigures
+		\tableofcontents % Indice
+		\listoffigures
+		\printglossary[type=\acronymtype]
 
 	\mainmatter % Comienzo de numeracion arabica
 
-	\include{Introduccion}
+		\include{Introduccion}
 
-	\include{capitulos/1}
-	\include{capitulos/2}
-	\include{capitulos/3}
-	\include{capitulos/4}
-	\include{capitulos/5}
+		\include{capitulos/1}
+		\include{capitulos/2}
+		\include{capitulos/3}
+		\include{capitulos/4}
+		\include{capitulos/5}
 
-	\include{Conclusiones}
+		\include{Conclusiones}
 
-	\printbibliography
-	
-	\appendix
-	\include{Apendices}
+		\printbibliography
+		
+		\appendix
+		\include{Apendices}
 
 \end{document}
