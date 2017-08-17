@@ -1,6 +1,33 @@
 \section{Cuarto sprint} % (fold)
 \label{sec:cuarto_sprint}
 
-cuarto sprint
+\subsection{Objetivos}
+
+\begin{itemize}
+	\item Desarrollar el módulo de sesiones de seminario.
+	\item Integrar el nuevo módulo con los demás módulos del sistema.
+\end{itemize}
+
+En este sprint se desarrollo el módulo de gestión de las sesiones de un seminario representado en el diagrama de casos de uso (anexo \ref{fig:diagramaCasosDeUso}), la parte más importante del proyecto. Interactua con los demás módulos implementados y es la funcionalidad central que da vida al sistema. Es la información mas importante que se guarda en la base de datos, Los datos de las sesiones y la interacción de los usuarios con éstas.
+
+\subsection{Actividades} % (fold)
+\label{sub:actividades4}
+
+\subsubsection{Representación en la base de datos}
+
+Para soportar la funcionalidad en la base de datos se creo la tabla llamada Sesión que contiene todos los datos relevantes para la descripción de una sesión. Es importante recalcar que las sesiones solo tienen sentido si forman parte de un curso del tipo seminario, cosa que se evidencia en la relación de agrupacion en el modelo final de la base de datos en el anexo \ref{fig:baseDeDatosFinal}. 
+
+Un seminario puede estar compuesto por muchas sesiones, mientras que las sesiones no pueden ser compartidas entre los distintos seminarios, por lo que se reprensenta como una relación 1 a muchos. 
+
+Una sesión se lleva a cabo en una ubicación por lo que se relacionan estas dos tablas. Una sesión puede suceder en solo una ubicación y las ubicaciones pueden albergar una cantidad de sesiones, por lo que la relación se modelo como 1 a muchos
+
+Una sesión además es dictada/supervisada por un instructor por lo que se modelo como una realión 1 a muchos análoga a las demás.
+
+La ultima relación es la mas interesante, las sesiones se relacionan directamente con los usuarios que asisten a ella (aprendices) y cada uno debe tener un espacio en la base de datos para modelar el resultado que este obtuvo en la misma. es una segunda relación de la tabla sesiones con la tabla Usuario que en este caso es muchos a muchos pues un usuario puede participar en cualquier número de sesiones que le hayan sido asignadas, mientras que a una sesión concurren la cantidad de usuarios que su capacidad permita. Se modelo con una tabla auxiliar que posee las dos foráneas y toda la información que la relación \emph{sesión-usuario} necesitó al momento del desarrollo y la que pueda necesitar en el futuro, haciendo el diseño flexible, una de las metas del proyecto.
+
+\subsubsection{Creación del CRUD}
+
+El proceso básico de creación del CRUD fué muy parecido al CRUD de las ubicaciones, pero con más consideraciones a tener en cuenta, pues aqui se integraban distintas partes de la aplicación, como un instructor, que debía ser un usuario del sistema; una ubicación, en la que se llevaría a cabo la sesión creada, manejo de fechas, activación y desactivación de las sesiones.
+
 
 % section cuarto_sprint (end)
