@@ -1,6 +1,5 @@
 Notas:
 
-- Definición de scrum
 - En algun lado decir que se trabajo en ingles
 - Reestructurar la introducción al final con todo lo que se describió
 - En el cap1 meter el logo y revisar la redacción
