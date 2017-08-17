@@ -6,6 +6,7 @@
 \begin{itemize}
 	\item Analizar la estructura de cursos actual del sistema.
 	\item Desarrollo e integración del módulo cursos del tipo seminario.
+	\item Crear un nuevo usuario para el sistema gestionar solo cursos presenciales.
 \end{itemize}
 
 \subsection{Actividades} % (fold)
@@ -36,5 +37,13 @@ Para lograr esto debió separar visualmente los distintos tipos de cursos en las
 
 En el método asignación se agregó luego un \emph{preview} con las sesiones disponibles para el seminario visibles en el apéndice \ref{fig:asignarSeminario} además del icono para lo seminarios. 
 
+
+\subsubsection{Creación del usuario instructor}
+
+Para el manejo de la puntuación de las sesiones y el manejo de la asistencia se decidio crear un nuevo tipo de usuario en el sistema que puediera apoyar al administrador en estas tareas. el usuario administrador tiene accesso a todos las funciones de un instructor en todos los cursos del sistema, mientras que el usuario solo tiene acceso a las sesiones en la que él mismo es él instructor.
+
+Para esto se debió modificar el módulo de \emph{login} para agregar la autentificación del nuevo usuario, que primero confima si el usuario tiene una jerarquia más alta que la de instructor (un usuario de más rango que contenga sus funciones), en caso contrario, verifica si el usuario que intenta ingresar es instructor de algun curso.
+
+El manejo de la autorización es realizado de forma manual, asi que solo se debió popular una estructura del tipo diccionario con las funcionalidades que se consideraran necesarias para el usuario instructor. En este caso, administrar los cursos de los que es instructor, funcionalidad desarrollada en el \emph{sprint} cinco.
 
 % section tercer_sprint (end)
