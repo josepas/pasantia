@@ -4,17 +4,38 @@
 \subsection{Objetivos}
 
 \begin{itemize}
-	\item Implentar las funcionalidades de calificación de las sesiones de seminarios.
-	\item Generar PDF con la lista de estudiantes de una sesión.
-	\item Implementar funcionalidad para hacer el módulo de seminarios opcional.
+	\item Migrar el SGA base de FKC para el manejo de caracteres UTF-8.
+	\item Implantar el SGA de FKC en los ambientes Munich y producción.
+	\item Implantar el SGA de Bibliomed en el ambiente de producción.
 \end{itemize}
 
-En este sprint, una vez que se contó con confirmaciones válidas que procedian desde usuarios aprendices del sistema se procedió a implementar la calificación por parte del usuario instructor y adiministrador. El estado de un usuario con respecto a una sesión se modela en la tabla auxiliar Sesión-Usuario que puede apreciarse en el anexo \ref{fig:baseDeDatosFinal}.
+Hasta el momento todo el desarrollo se habia realizado en servidores de prueba, en este sprint se translada la base de código actualizada a los servidores de producción de cada empresa y se realizan las pruebas correspondientes.
 
 \subsection{Actividades} % (fold)
-\label{sub:actividades6}
+\label{sub:actividades9}
 
-\subsubsection{Mantener la integridad de la base de datos}
+\subsubsection{Migración para el soporte de caracteres UTF-8}
+
+Al integrar las nuevas funcionalidades en el SGA de Bibliomed el pasante se dió cuenta que muchos de los caracteres especiales de lenguaje alemán perdian representación. Esto se debió a que el SGA de Bibliomed representaba caracteres en el formato UTF-8 en comparación con el más viejo ISO del sistema base.
+
+Bibliomed al soportar el lenguaje ruso usa la mejor opción UTF-8. Pero mantener este esquema significaría que los próximos sistemas vendidos por FKC también podrian luego necesitar la migración a UTF-8 para soportar otros lenguajes. El equipo decidió entonces asignar la tarea al pasante de migrar el sistema al soporte de caracteres UTF-8 en su versión básica.
+
+Para lograr esto debian guardarse todos los archivos con el nuevo formato que previamente estaban guardados en el formato ISO y cambiar la etiqueta HTML que especifica el \emph{charset} en todos los archivos del sistema. Se utilizaron expresiones regulares dentro del editor de texto para modificar este parámetro satisfactoriamente.
+
+Los otros desarrolladores realizaron las pruebas pertinentes para comprobar el resultado de la operación.
+
+\subsubsection{Implantación del SGA de FKC}
+
+El proceso de implantación del sistema consistió en modificiar las tablas en el servidor objetivo y enviar los archivos a través de FTP. Este era un proceso totalmente manual.
+
+Para FKC debió hacerse en dos servidores distintos, uno para la filial en Munich y el otro para producción.
+
+Se realizaron pruebas manuales para la integración del módulo con las demás partes del sistema
+
+\subsubsection{Implantación del SGA Bibliomed}
+
+El proceso fue análogo a la implantación del SGA de FKC solo cuidando las diferencias en la estructura de la base de datos.
+
 
 
 % section noveno_sprint (end)
