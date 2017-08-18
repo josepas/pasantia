@@ -11,6 +11,8 @@
 
 Al mitad del desarrollo del sprint anterior el cliente consideró agregar una nueva funcionalidad al módulo. La posibilidad de agregar sesiones dentro de los seminarios que pudieron darse en conferencias en linea. El pasante decidió incluir esta funcionalidad en el presente sprint que ya contenía el envio de notificaciones por correo en los principales eventos del sistema y la integración de los seminarios en las estadísticas de los cursos.
 
+Con este sprint se finalizó el desarollo del módulo de seminarios excluyendo futuras correcciones.
+
 \subsection{Actividades} % (fold)
 \label{sub:actividades7}
 
@@ -20,7 +22,7 @@ Añadir sesiones en linea fue un proceso parecido al de agregar los seminarios a
 
 La diferencia entre estas sesiones y las anteriores es que estas ya no tendrian asignadas una ubicación física, en este caso tendrian una URL y un codígo de acceso para ingresar a la misma. se ingresó un campo tipo a la Tabla Sesión para diferenciarlas. el entero cero representa las sesiones físicas y el uno se refiere a las en línea.
 
-\subsubsection{Presentación de sesiones en línea }
+\subsubsection{Presentación de las sesiones en línea }
 
 La lógica de negocio detras de las sesiones en linea terminó siendo la misma que para las sesiones físicas por lo que la calificación de éstas no debió ser modificada. El reto estuvó en la creación, actualización y presentación de las mismas al usuario.
 
@@ -29,5 +31,32 @@ Para crear una sesión online se agregó una opción de tipo en la creación de 
 Este tipo de sesiones debian ser mostradas de forma distinta en las vistas que involucraran las sesiones ya que estas cuentan con datos distintos. por lo que se modificó la visualización del antiguo modal del aprendiz para la ubicación. En el caso de una sesión física se seguiría mostrando el mismo modal y en caso contrario se mostraria el modal con los datos referentes a la sesión en línea solo en el caso en que el usuario haya confirmado dicha sesión.
 
 En lugares donde se listan las sesiones el campo de ubicación paso a llamarse ``ubicación/url'' y en el caso de una sesión en linea se muestra e texto ``sesión en línea'' en vez de el nombre de la ubicación. 
+
+\subsubsection{Notificaciones}
+
+Se procedió primero a identificar cuales eran los eventos que requerían de notificaciones a los usuarios entre estos se encontraron:
+
+\begin{itemize}
+	\item Información de una sesión confirmada o cancelada por el usuario.
+	\item Correo informando al usuario que una de sus sesiones confirmadas fue cancelada.
+	\item Noficar al instructor que un usuario a confirmado o cancelado una de sus sesiones.
+\end{itemize}
+
+Las notificaciones en el sistema generalmente son hechas a través de correos, el pasante decidió mantener ésta práctica. Se utilizó para este propósito la libreria \emph{swift mailer}.
+
+El proceso de agregar las notificaciones paso por crear una función de envoltura a la librerias de \emph{swift mailer} que recibiera los datos básicos necesarios para enviar un correo como: encabezado, mensaje y destinatarios dentro de un arreglo.
+
+El resto fue ubicar los envios de correos en los sitios adecuados, llenando los datos correctos según fuera el caso.
+
+Al comenzar a probar el sistema, los clientes se dieron cuenta que las notificaciones podian llegar a ser demasiadas en cursos compuestos por muchos estudiantes, por lo que luego se desarrollo una opción para desactivar los correos recibidos por el instructor de una sesión. como ejemplo se muestra uno de los correos enviados por la aplicación en el anexo \ref{fig:correos}.
+
+\subsubsection{Integración de las estadísticas}
+
+Las estadísticas es una de las partes mas importantes en el manejo de los cursos (anexo \ref{fig:estadisticasAdmin}). Allí los administradores pueden corroborar el desempeño de los aprendices. Al ser los seminarios un nuevo tipo de curso tambien debian ser incluidos en las estadísticas. La empresa proveyó un mapa de los estados de los cursos al que el pasanté tuvo que moldear los resultados de las sesiones. 
+
+Debió modificar algunas consultas en las estadísticas para que estas puedieran reflejar los resultados de los seminarios. generalmente suavizando condiciones de los \emph{joins}. Se diferenciaron los seminarios con el uso de un icono distintivo.
+
+Además, algunos datos en la tabla de visualización de las estadísticas no corcodaban con los datos referentes a los seminarios. Estos datos se omitieron como: momento de inicio, momento de terminación, tiempo de aprendizaje que mas adecuados y facilmente medibles en los cursos web.
+
 
 % section septimo_sprint (end)
