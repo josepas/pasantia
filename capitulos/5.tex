@@ -14,6 +14,47 @@ En este capítulo se describe el proceso de desarrollo del proyecto de pasantía
 \input{capitulos/sprints/9}
 \input{capitulos/sprints/10}
 
+\section{Actividades extra} % (fold)
+\label{sec:actividades_extra}
+
+Durante la realización del proyecto dada la naturaleza de la empresa como consultor informática de aprendizaje electrónico el pasante fue requerido para la realización de tareas extra de los diversos clientes de FKC.
+
+	\subsection{Exportar preguntas de un SGA} % (fold)
+	\label{sub:exportar_preguntas_de_un_sga}
+
+	% subsection exportar_preguntas_de_un_sga (end)
+
+	Una funcionalidad para un sistema realizado con Active Sever Pages con Visual Basic (ASP). Consitió en la implementación de una migración para los datos de uno de los clientes. Específicamente, las preguntas presentes en su base de datos. El pasante debió automatizar la tarea de generar el nuevo formato para las preguntas en el nuevo formato, marcando las distintas preguntas con sus opciones con una caracter especial marcando la respuesta correcta y separando las preguntas según su tipo (selección simple, compuesta). Luego sirviendo el resultado a través de la web en el sistema del cliente en un archivo que pudiera ser interpretado en las \emph{suites} ofimáticas comunes.
+
+	Para la realización de esta tarea el pasante realizó la lógica enteramente dentro del lenguaje SQL, Limitando el uso de ASP al servicio de los resultados a traves de la página web.
+
+	% section actividades_extra (end)
+
+	\subsection{Migración a UTF-8} % (fold)
+	\label{sub:migración_a_utf_8}
+	
+	La empresa al estar satisfecha con la migración de su SGA base a la codificación UTF-8 requirió que el pasante migrara un SGA de un cliente a esta codificacíon para el soporte del lenguaje turco.
+	% subsection migración_a_utf_8 (end)
+
+	\subsection{Funcionalidad en modulo \emph{responsive}} % (fold)
+	\label{sub:funcionalidad_en_modulo_responsive}
+	
+	El pasante apoyó a otro desarrollador en uno de sus proyectos, una herramienta para generar cursos o presentaciones dentro de uno de los SGA de un cliente.
+
+	La herramienta permite la construcción de diapositivas con distintos elementos de interfaz básicos, como, imagenes con texto, figuras, etc. El pasante codificó los parametros de entrada y la presentación de imagenes con leyendas al pie o encabezando las mismas, enmarcado dentro del diseño \emph{resposive}.
+
+	% subsection funcionalidad_en_modulo_responsive (end)
+
+	\subsection{Imagenes de las vistas de login} % (fold)
+	\label{sub:imagenes_de_las_vistas_de_login}
+	
+	Los SGA vendidos por FKC son personalizables, entre uno de los parametros que pueden modificarse para la adaptación a los clientes son las imágenes de la vista de inició de sesión, y el \emph{banner} que se muestra al tope de cada vista del sistema tanto en la vista de usuario como en la vista de adminstrador.
+
+	Anteriormente, los desarrolladores dentro de FKC recibian las imágenes necesarias para estas vistas y las adaptaban al sistema de manera manual y colocandolas en un fichero creado para este propósito en el servidor.
+
+	El pasante agregó una funcionalidad para agregar estas imágenes y sus color de fondo directamente desde la interfaz de super admin dentro del sistema que sorporta la previsualización de la imagen escogida. Ofreciendo una manera mas rápida y sencilla para la elección de dicha imágen asi como sus dimensiones y además permitiendo que los mismos clientes puedan modificar sus imagenes de inicio de sesión y \emph{banner}. 
+
+	% subsection imagenes_de_las_vistas_de_login (end)
 
 \section{Dificultades encontradas} % (fold)
 \label{sec:dificultades_encontradas}
