@@ -14,7 +14,8 @@ En este sprint se desarrollo el módulo de manejo de ubicaciones representando e
 
 \subsubsection{Amplicación de la base de datos}
 
-Para soportar esta funcionalidad en la base de datos se creo una tabla llamada ubicación con los datos que parecieron relevantes para el cliente ilutrada en el anexo \ref{fig:baseDeDatosFinal}. Dicha ubicación estaría relacionada con las sesiones, pudiendo una ubicación alojar distintas sesiones. El SGA permite mantener distintos clientes para dar soporte de grandes compañias con filiales, por lo que las ubicaciones se construyen aisladas del grueso de la funcionalidad (los seminarios) para poder ser usadas luego en funcionalidades futuras o integrada en sistemas de los clientes activos de SGAs de FKC. Tienen una relación directa con la tabla cliente a través de una llave foránea. Para la clave primaria se uso un identificador creciente autogenerado.
+Para soportar esta funcionalidad en la base de datos se creo una tabla llamada ubicación con los datos que parecieron relevantes para el cliente ilutrada en el anexo \ref{fig:baseDeDatosFinal}. Dicha ubicación estaría relacionada con las sesiones, pudiendo una ubicación alojar distintas sesiones. El SGA permite mantener distintos clientes para dar soporte de grandes compañía
+s con filiales, por lo que las ubicaciones se construyen aisladas del grueso de la funcionalidad (los seminarios) para poder ser usadas luego en funcionalidades futuras o integrada en sistemas de los clientes activos de SGAs de FKC. Tienen una relación directa con la tabla cliente a través de una llave foránea. Para la clave primaria se uso un identificador creciente autogenerado.
 
 \subsubsection{Creación del CRUD}
 
