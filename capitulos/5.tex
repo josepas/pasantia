@@ -9,9 +9,31 @@ En este capítulo se describe el proceso de desarrollo del proyecto de pasantía
 \input{capitulos/sprints/4}
 \input{capitulos/sprints/5}
 \input{capitulos/sprints/6}
-
 \input{capitulos/sprints/7}
-
 \input{capitulos/sprints/8}
 \input{capitulos/sprints/9}
 \input{capitulos/sprints/10}
+
+
+\section{Dificultades encontradas} % (fold)
+\label{sec:dificultades_encontradas}
+
+A lo largo de la realización del proyecto de pasantía se encontraron las siguientes dificultades:
+
+\begin{itemize}
+	\item El idioma fue una limitante para el pasante a la hora de hacer el análisis del sistema y del código a modificar en algunos casos. El código muchas veces no explicaba por si solo la funcionalidad que implementaba. Teniendo el pasante que acudir a los otros desarolladores para la explicación de casos borde no apreciables en el análisis semántico. Además, comentarios y nombres de rutinas se encontraban escritos en alemán, idioma que el pasante no dominaba al nivel necesario para su completo entendimineto.
+
+	\item El manejo de la internacionalización del sistemas como fechas, usos horarios y lenguajes fue un reto interesante que el pasante debió sortear, siendo los clientes de diversos países dentro de la Unión Europea. 
+	
+	\begin{itemize}
+		\item Para los el manejo de fechas y usos horarios se aprovecho la interacción de los campos tipo \emph{datetime} de SQL Server y la clase \emph{DateTime} de PHP, que permitió configurar las locales dependiendo de las características del servidor donde se encuentre alojado el sistema.
+
+		\item Para el manejo del texto en diferentes lenguajes el pasante manejó un base de datos de la empresa donde se encuentran todos los textos de la aplicación. Insertando y consultando los textos adecuados en cada ocasión. Los textos de la base de datos luego pasaban a ser parte de una función filtro de todos los textos del sistema. Dicha función detectaba el idioma guardado en la sesión HTTP y mostraba el texto oportuno. El pasante ingresó todos los textos en inglés que luego fueron traducidos por colegas de la empresa.
+	\end{itemize}
+
+\end{itemize}
+
+
+
+% section dificultades_encontradas (end)
+
