@@ -1,4 +1,0 @@
-Notas:
-
-En 5.1.2.1 hablas de "la página wed de php", debes poner una referencia y en la bibliografia donde este esa referencia debes poner el url
-
