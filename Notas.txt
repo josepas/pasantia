@@ -2,7 +2,5 @@ Notas:
 
 En el marco teórico sería bueno que definas " manejador de base de datos"
 
-Revisar puntos y aparte
-
 En 5.1.2.1 hablas de "la página wed de php", debes poner una referencia y en la bibliografia donde este esa referencia debes poner el url
 
