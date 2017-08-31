@@ -1,4 +1,4 @@
-\section{Cuarto sprint} % (fold)
+﻿\section{Cuarto sprint} % (fold)
 \label{sec:cuarto_sprint}
 
 \subsection{Objetivos}
@@ -6,10 +6,10 @@
 \begin{itemize}
 	\item Desarrollar el módulo de sesiones de seminario.
 	\item Integrar el nuevo módulo con los demás módulos del sistema.
-	\item Agregar visualización de sesiones activas para una ubicación
+	\item Agregar visualización de sesiones activas para una ubicación.
 \end{itemize}
 
-En este sprint se desarrollo el módulo de gestión de las sesiones de un seminario representado en el diagrama de casos de uso (anexo \ref{fig:diagramaCasosDeUso}), la parte más importante del proyecto. Interactua con los demás módulos implementados y es la funcionalidad central que da vida al sistema. Es la información mas importante que se guarda en la base de datos, Los datos de las sesiones y la interacción de los usuarios con éstas.
+En este sprint se desarrolló el módulo de gestión de las sesiones de un seminario representado en el diagrama de casos de uso (anexo \ref{fig:diagramaCasosDeUso}), la parte más importante del proyecto. Interactúa con los demás módulos implementados y es la funcionalidad central que da vida al sistema. Es la información más importante que se guarda en la base de datos, Los datos de las sesiones y la interacción de los usuarios con éstas.
 
 Cabe destacar que al momento de mencionar sesión se hace referencia a las sesiones de los seminarios y no la sesión HTTP a menos que se especifique lo contrario.
 
@@ -18,48 +18,48 @@ Cabe destacar que al momento de mencionar sesión se hace referencia a las sesio
 
 \subsubsection{Representación en la base de datos}
 
-Para soportar la funcionalidad en la base de datos se creo la tabla llamada Sesión que contiene todos los datos relevantes para la descripción de una sesión. Es importante recalcar que las sesiones solo tienen sentido si forman parte de un curso del tipo seminario, cosa que se evidencia en la relación de agrupacion en el modelo final de la base de datos en el anexo \ref{fig:baseDeDatosFinal}. 
+Para soportar la funcionalidad en la base de datos se creó la tabla llamada Sesión que contiene todos los datos relevantes para la descripción de una sesión. Es importante recalcar que las sesiones sólo tienen sentido si forman parte de un curso del tipo seminario, cosa que se evidencia en la relación de agrupación en el modelo final de la base de datos en el anexo \ref{fig:baseDeDatosFinal}. 
 
-Un seminario puede estar compuesto por muchas sesiones, mientras que las sesiones no pueden ser compartidas entre los distintos seminarios, por lo que se reprensenta como una relación 1 a muchos. 
+Un seminario puede estar compuesto por muchas sesiones, mientras que las sesiones no pueden ser compartidas entre los distintos seminarios, por lo que se representa como una relación 1 a muchos. 
 
-Una sesión se lleva a cabo en una ubicación por lo que se relacionan estas dos tablas. Una sesión puede suceder en solo una ubicación y las ubicaciones pueden albergar una cantidad de sesiones, por lo que la relación se modelo como 1 a muchos
+Una sesión se lleva a cabo en una ubicación por lo que se relacionan estas dos tablas. Una sesión puede suceder en solo una ubicación y las ubicaciones pueden albergar una cantidad de sesiones, por lo que la relación se modelo como 1 a muchos.
 
-Una sesión además es dictada/supervisada por un instructor por lo que se modelo como una realión 1 a muchos análoga a las demás.
+Una sesión además es dictada/supervisada por un instructor por lo que se modelo como una relación 1 a muchos análoga a las demás.
 
-La ultima relación es la mas interesante, las sesiones se relacionan directamente con los usuarios que asisten a ella (aprendices) y cada uno debe tener un espacio en la base de datos para modelar el resultado que este obtuvo en la misma. es una segunda relación de la tabla sesiones con la tabla Usuario que en este caso es muchos a muchos pues un usuario puede participar en cualquier número de sesiones que le hayan sido asignadas, mientras que a una sesión concurren la cantidad de usuarios que su capacidad permita. Se modelo con una tabla auxiliar que posee las dos foráneas y toda la información que la relación \emph{sesión-usuario} necesitó al momento del desarrollo y la que pueda necesitar en el futuro, haciendo el diseño flexible, una de las metas del proyecto.
+La última relación es la más interesante, las sesiones se relacionan directamente con los usuarios que asisten a ella (aprendices) y cada uno debe tener un espacio en la base de datos para modelar el resultado que este obtuvo en la misma. es una segunda relación de la tabla sesiones con la tabla Usuario que en este caso es muchos a muchos pues un usuario puede participar en cualquier número de sesiones que le hayan sido asignadas, mientras que a una sesión concurren la cantidad de usuarios que su capacidad permita. Se modelo con una tabla auxiliar que posee las dos foráneas y toda la información que la relación \emph{sesión-usuario} necesitó al momento del desarrollo y la que pueda necesitar en el futuro, haciendo el diseño flexible, una de las metas del proyecto.
 
 \subsubsection{Creación del CRUD}
 
-El proceso básico de creación del CRUD fué muy parecido al CRUD de las ubicaciones, pero con más consideraciones a tener en cuenta, pues aqui se integraban distintas partes de la aplicación, como un instructor, que debía ser un usuario del sistema; una ubicación, en la que se llevaría a cabo la sesión creada, manejo de fechas, activación y desactivación de las sesiones. La vista de CRUD se presenta en el anexo \ref{fig:creacionSesion}.
+El proceso básico de creación del CRUD fue muy parecido al CRUD de las ubicaciones, pero con más consideraciones a tener en cuenta, pues aquí se integraban distintas partes de la aplicación, como un instructor, que debía ser un usuario del sistema; una ubicación, en la que se llevaría a cabo la sesión creada, manejo de fechas, activación y desactivación de las sesiones. La vista de CRUD se presenta en el anexo \ref{fig:creacionSesion}.
 
 \subsubsection{Creación de una sesión}
 
-Primero se procedió a integrar el módulo con las ubicaciones. Para poder crear una sesión debia estar creada en primer lugar una ubicación, por lo tanto se integró una entrada al módulo de ubicaciones desde el CRUD de la sesión que mantuviera en forma de \emph{cookie} cual sesión estaba siendo modificada para volver a ella. La capacidad de la sesión no podra ser mayor a la capacidad de la locación seleccionada.
+Primero se procedió a integrar el módulo con las ubicaciones. Para poder crear una sesión debía estar creada en primer lugar una ubicación, por lo tanto, se integró una entrada al módulo de ubicaciones desde el CRUD de la sesión que mantuviera en forma de \emph{cookie} cual sesión estaba siendo modificada para volver a ella. La capacidad de la sesión no podrá ser mayor a la capacidad de la locación seleccionada.
 
-Además, una sesión no podria ser creada en una fecha en la que la ubicación seleccionada estuviera ocupada (tuviera otra sesión cuyo horario choque). Esta limitación dio pie a que se implementara una visualización de las sesiones activas de una ubicación.
+Además, una sesión no podría ser creada en una fecha en la que la ubicación seleccionada estuviera ocupada (tuviera otra sesión cuyo horario choque). Esta limitación dio pie a que se implementara una visualización de las sesiones activas de una ubicación.
 
-Para el campo de instructor podia ser seleccionado cualquier usuario activo del sistema del cliente en el que se este realizando la operación. El cliente puede obtenerse por medio de la tabla curso, así que por normalización no se agregó información del cliente a la sesión como si se agrego a la ubicación.
+Para el campo de instructor podía ser seleccionado cualquier usuario activo del sistema del cliente en el que se esté realizando la operación. El cliente puede obtenerse por medio de la tabla curso, así que por normalización no se agregó información del cliente a la sesión como si se agregó a la ubicación.
 
-Se agregaron campos que limitaban las confirmación y la cancelación de una sesión por parte de los aprendices, con el fin de dar seguridad al instructor de la cantidad asistentes a un curso.
+Se agregaron campos que limitaban las confirmaciones y la cancelación de una sesión por parte de los aprendices, con el fin de dar seguridad al instructor de la cantidad asistentes a un curso.
 
-Mas adelante en el sprint 7 se decidió la implementación de una opción para dar potestad al instructor de recibir o no los correos que notificaran las confirmaciones y cancelaciones por lo que se integro un campo para tal fin.
+Mas adelante en el sprint 7 se decidió la implementación de una opción para dar potestad al instructor de recibir o no los correos que notificaran las confirmaciones y cancelaciones por lo que se integró un campo para tal fin.
 
-\subsubsection{Actualización de una sesión}
+\subsubsection {Actualización de una sesión}
 
-Las sesiones tiene un campo ``activa'' para que puedan ser desactivadas en caso de cualquier eventualidad manteniendo los datos de la sesión para poder asi ser reusados.
+Las sesiones tienen un campo ``activa'' para que puedan ser desactivadas en caso de cualquier eventualidad manteniendo los datos de la sesión para poder así ser reusados.
 
-Las fechas de inicio y final de una sesión no pueden ser cambiadas si ya poseen usuarios confirmados, por lo que primero tendriar que se eliminados y notificados de la misma para poder realizar los cambios.
+Las fechas de inicio y final de una sesión no pueden ser cambiadas si ya poseen usuarios confirmados, por lo que primero tendrían que ser eliminados y notificados de la misma para poder realizar los cambios.
 
 \subsubsection{Borrado de una sesión}
 
-El borrado básico se realizó en este sprint pero luego tuvo restrisciones que surgieron del manejo de las calificaciones implementado en el sexto sprint y además se agregaron opciones de notificación a los usuarios de una sesión cancelada en el sprint siete. el borrado se puede realizar desde el listado de las sesiones en el administrador como se muestra en las opciones del anexo \ref{fig:listarSesiones}. El usuario instructor no puede borrar la sesión, solo desactivarla.
+El borrado básico se realizó en este sprint, pero luego tuvo restricciones que surgieron del manejo de las calificaciones implementado en el sexto sprint y además se agregaron opciones de notificación a los usuarios de una sesión cancelada en el sprint siete. El borrado se puede realizar desde el listado de las sesiones en el administrador como se muestra en las opciones del anexo \ref{fig:listarSesiones}. El usuario instructor no puede borrar la sesión, solo desactivarla.
 
 \subsubsection{Visualización de sesiones activas de una ubicación}
 
 Se agregó para facilitar el proceso de elegir una locación libre en la fecha de la sesión.
 
-Para la visualización se uso un \emph{plug-in} de calendario bootstrap-year-calendar creado usando \emph{bootstrap} y \emph{jquery}. \emph{Plug-in} que permite la representación de los meses en distintos lenguajes asi como la personalización de sus colores, aspectos necesarios para el amplio rango de necesidades de los clientes de FKC.
+Para la visualización se usó un \emph{plug-in} de calendario bootstrap-year-calendar creado usando \emph{bootstrap} y \emph{jquery}. \emph{Plug-in} que permite la representación de los meses en distintos lenguajes, así como la personalización de sus colores, aspectos necesarios para el amplio rango de necesidades de los clientes de FKC.
 
-Este calendario se llena con AJAX a través de un \emph{endpoint} creado para tal fin que devuelve las sesiones activas de la locación como un objeto json que luego se muestra en los días del calendario como se muestra en el anexo \ref{fig:editarUbicaciones}. las sesiones desactivadas se muestran con un tipo de letra mas pequeño y en cursiva para diferenciarlas de las demás.
+Este calendario se llena con AJAX a través de un \emph{endpoint} creado para tal fin que devuelve las sesiones activas de la locación como un objeto json que luego se muestra en los días del calendario como se muestra en el anexo \ref{fig:editarUbicaciones}. las sesiones desactivadas se muestran con un tipo de letra más pequeño y en cursiva para diferenciarlas de las demás.
 
 % section cuarto_sprint (end)

@@ -1,10 +1,10 @@
-\section{Tercer sprint} % (fold)
+﻿\section{Tercer sprint} % (fold)
 \label{sec:tercer_sprint}
 
 \subsection{Objetivos}
 
 \begin{itemize}
-	\item Analizar la estructura de cursos actual del sistema.
+	\item Analizar la estructura de cursos previamente implementados en el sistema.
 	\item Desarrollo e integración del módulo cursos del tipo seminario.
 	\item Crear un nuevo usuario para el sistema gestionar solo cursos presenciales.
 \end{itemize}
@@ -14,36 +14,36 @@
 
 \subsubsection{Análisis de los cursos implementados en el sistema}
 
-Luego de examinar las tablas y entender el funcionamineto de los cursos y como son asignados a los grupos (Anexo \ref{fig:baseDeDatosPrevia}) se decidió extender esta tabla como una generalización.
+Luego de examinar las tablas y entender el funcionamiento de los cursos y como son asignados a los grupos (Anexo \ref{fig:baseDeDatosPrevia}) se decidió extender esta tabla como una generalización.
 
-El sistema solo daba soporte a cursos del tipo multimedia dentro del mismo sistema, que podian ser de autoría del cliente o externos. Estos dos tipos eran manejados con un booleano ``cursoDeAutoria'' decisión de diseño que no daba espacio para la expansión de mas tipos de cursos. El pasante sugirió agregar un campo ``tipo'' a la tabla de Curso asignandole el entero \emph{2} al tipo de curso seminario. dejando los enteros \emph{0} y \emph{1} a los anteriores tipos de cursos. La migración de los tipos anteriores para ser representados con el nuevo campo ``tipo'' fue sugerida pero los demás desarrolladores rechazaron la propuesta por provocar cambios en otras funcionalidades del sistema. el estado final de la base de datos se demuestra en el anexo \ref{fig:baseDeDatosFinal}.
+El sistema solo daba soporte a cursos del tipo multimedia dentro del mismo sistema, que podían ser de autoría del cliente o externos. Estos dos tipos eran manejados con un booleano ``cursoDeAutoria'' decisión de diseño que no daba espacio para la expansión de más tipos de cursos. El pasante sugirió agregar un campo ``tipo'' a la tabla de Curso asignándole el entero \emph{2} al tipo de curso seminario. dejando los enteros \emph{0} y \emph{1} a los anteriores tipos de cursos. La migración de los tipos anteriores para ser representados con el nuevo campo ``tipo'' fue sugerida pero los demás desarrolladores rechazaron la propuesta por provocar cambios en otras funcionalidades del sistema. el estado final de la base de datos se demuestra en el anexo \ref{fig:baseDeDatosFinal}.
 
 \subsubsection{Desarrollo del módulo cursos del tipo seminario}
 
-Una ves diferenciado el nuevo tipo curso de los demás en la aplicación se procedió a dar soporte a las actividades CRUD para los seminarios. para esto se reutilizó la sección del sistema usada para la creación de cursos. Agregando la opción \emph{seminario} a las opciones previas en la creación de un curso y cambiando la estructura de la forma HTML usando Javascript, asi como los datos enviados mediante el método POST y su respectiva validación en el servidor para el soporte de los seminarios. La vista se incluyó en el anexo \ref{fig:creacionSeminario}.
+Una vez diferenciado el nuevo tipo curso de los demás en la aplicación se procedió a dar soporte a las actividades CRUD para los seminarios. para esto se reutilizó la sección del sistema usada para la creación de cursos. Agregando la opción \emph{seminario} a las opciones previas en la creación de un curso y cambiando la estructura de la forma HTML usando Javascript, así como los datos enviados mediante el método POST y su respectiva validación en el servidor para el soporte de los seminarios. La vista se incluyó en el anexo \ref{fig:creacionSeminario}.
 
 Una de las diferencias de los seminarios con los cursos multimedia es la forma en la que son aprobados, se decidió que podían existir dos tipos:
 
 \begin{itemize}
 	\item Aprobar con tan solo asistir al curso.
-	\item Aprobar asitiendo al curso y aprobando un examen presencial.
+	\item Aprobar asistiendo al curso y aprobando un examen presencial.
 \end{itemize}
 
-Para el soporte de estos dos tipos se agrego un campo ``con\_examen'' que permite la representación.
+Para el soporte de estos dos tipos se agregó un campo ``con\_examen'' que permite la representación.
 
-El pasante aprovechó los métodos de eliminación, listado y asignación a grupos que el sistema ya poseía, ajuntandolos para el funcionamiento con los seminarios. 
+El pasante aprovechó los métodos de eliminación, listado y asignación a grupos que el sistema ya poseía, ajustándolos para el funcionamiento con los seminarios. 
 
 Para lograr esto debió separar visualmente los distintos tipos de cursos en las vistas de listado, para esto agrego un icono que los diferenciara en la vista de cursos del administrador (anexo \ref{fig:listarCursos}). Además agregó un filtro persistente en la sesión HTTP que permitiera al administrador la visualización de solo cursos del tipo seminario a lo largo de su conexión.
 
-En el método asignación se agregó luego un \emph{preview} con las sesiones disponibles para el seminario visibles en el apéndice \ref{fig:asignarSeminario} además del icono para lo seminarios. 
+En el método asignación se agregó luego un \emph{preview} con las sesiones disponibles para el seminario visibles en el apéndice \ref{fig:asignarSeminario} además del icono para los seminarios. 
 
 
 \subsubsection{Creación del usuario instructor}
 
-Para el manejo de la puntuación de las sesiones y el manejo de la asistencia se decidio crear un nuevo tipo de usuario en el sistema que puediera apoyar al administrador en estas tareas. el usuario administrador tiene accesso a todos las funciones de un instructor en todos los cursos del sistema, mientras que el usuario solo tiene acceso a las sesiones en la que él mismo es él instructor.
+Para el manejo de la puntuación de las sesiones y el manejo de la asistencia se decidió crear un nuevo tipo de usuario en el sistema que puediera apoyar al administrador en estas tareas. el usuario administrador tiene acceso a todas las funciones de un instructor en todos los cursos del sistema, mientras que el usuario solo tiene acceso a las sesiones en la que él mismo es él instructor.
 
-Para esto se debió modificar el módulo de \emph{login} para agregar la autentificación del nuevo usuario, que primero confima si el usuario tiene una jerarquia más alta que la de instructor (un usuario de más rango que contenga sus funciones), en caso contrario, verifica si el usuario que intenta ingresar es instructor de algun curso.
+Para esto se debió modificar el módulo de \emph{login} para agregar la autentificación del nuevo usuario, que primero confirma si el usuario tiene una jerarquía más alta que la de instructor (un usuario de más rango que contenga sus funciones), en caso contrario, verifica si el usuario que intenta ingresar es instructor de algún curso.
 
-El manejo de la autorización es realizado de forma manual, asi que solo se debió popular una estructura del tipo diccionario con las funcionalidades que se consideraran necesarias para el usuario instructor. En este caso, administrar los cursos de los que es instructor, funcionalidad desarrollada en el \emph{sprint} cinco.
+El manejo de la autorización es realizado de forma manual, así que solo se debió popular una estructura del tipo diccionario con las funcionalidades que se consideraran necesarias para el usuario instructor. En este caso, administrar los cursos de los que es instructor, funcionalidad desarrollada en el \emph{sprint} cinco.
 
 % section tercer_sprint (end)

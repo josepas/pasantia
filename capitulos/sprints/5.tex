@@ -1,4 +1,4 @@
-\section{Quinto sprint} % (fold)
+﻿\section{Quinto sprint} % (fold)
 \label{sec:quinto_sprint}
 
 \subsection{Objetivos}
@@ -8,24 +8,24 @@
 	\item Desarrollar las funcionalidades para el aprendiz.
 \end{itemize}
 
-En este sprint luego de haber realizado los requerimientos básicos necesarios para el soporte del módulo o lo que generalmente es llamado \emph{backend} de la aplicación. Se procedió a realizar el \emph{frontend} que permitiera a los usuarios interactuar con los cursos del tipo seminario y sus sesiones. Especificamente los casos de uso pertenecientes al usuario aprendiz en la parte baja del diagrama de casos de uso (anexo \ref{fig:diagramaCasosDeUso}).
+En este sprint luego de haber realizado los requerimientos básicos necesarios para el soporte del módulo o lo que generalmente es llamado \emph{backend} de la aplicación. Se procedió a realizar el \emph{frontend} que permitiera a los usuarios interactuar con los cursos del tipo seminario y sus sesiones. Específicamente los casos de uso pertenecientes al usuario aprendiz en la parte baja del diagrama de casos de uso (anexo \ref{fig:diagramaCasosDeUso}).
 
 \subsection{Actividades} % (fold)
 \label{sub:actividades5}
 
 \subsubsection{Diseño de la interfaz}
-El reto mas importante esta etapa del proyecto fue encontrar donde mostrar las sesiones de los cursos, si crear otra pestaña en el menu del sistema solo para los cursos del tipo seminario o integrar de alguna forma los cursos diferenciandolos de los demás.
+El reto más importante de esta etapa del proyecto fue encontrar donde mostrar las sesiones de los cursos, si crear otra pestaña en el menu del sistema solo para los cursos del tipo seminario o integrar de alguna forma los cursos diferenciándolos de los demás.
 
-La opción que se tomó fue la segunda. La primera opción agregaba una entrada más a un menu que comenzaba a lucir un poco abarrotado, pero, la segunda opción trajo sus dificultades. Se tuvo que modificar un código escrito de una forma complicada debido al mal uso de la librería de maquetado \emph{Smarty}. La interfaz era una lista rígida de los cursos como se muestra en el anexo \ref{fig:aprendizListarViejo} por lo que se decidió dar una opción para generar un pestaña debajo de cada curso.
+La opción que se tomó fue la segunda. La primera opción agregaba una entrada más a un menu que comenzaba a lucir un poco abarrotado, pero, la segunda opción trajo sus dificultades. Se tuvo que modificar un código escrito de una forma complicada debido al mal uso de la librería de maquetado \emph{Smarty}. La interfaz era una lista rígida de los cursos como se muestra en el anexo \ref{fig:aprendizListarViejo} por lo que se decidió dar una opción para generar una pestaña debajo de cada curso.
 
-Este nuevo espacio generado debajo de los seminarios permitió colocar las sesiones disponibles del usuario, pero termino siendo un poco inconsistente que unos cursos tuvieran la opción de generar pestañas con mas información y otros no. Como respuesta a esto los clientes sugirieron que ingresara un nuevo campo a la tabla curso para colocar una imagen que pudiera ser mostrada en todas las pestañas junto con la descripción del curso.
+Este nuevo espacio generado debajo de los seminarios permitió colocar las sesiones disponibles del usuario, pero termino siendo un poco inconsistente que unos cursos tuvieran la opción de generar pestañas con más información y otros no. Como respuesta a esto los clientes sugirieron que ingresara un nuevo campo a la tabla curso para colocar una imagen que pudiera ser mostrada en todas las pestañas junto con la descripción del curso.
 
-A simple vista era dificil para el usuario diferenciar los seminarios de los cursos multimedia por lo que se agregó un icono para los seminarios al lado del nombre de cada curso. Una vez visibles los seminarios, se considero necesario notificar al usuario visualmente que la acción de confirmación de una sesión de seminar era necesaria o que dicha acción ya estaba realizada.
+A simple vista era difícil para el usuario diferenciar los seminarios de los cursos multimedia por lo que se agregó un icono para los seminarios al lado del nombre de cada curso. Una vez visibles los seminarios, se consideró necesario notificar al usuario visualmente que la acción de confirmación de una sesión de seminario era necesaria o que dicha acción ya estaba realizada.
 
 El pasante acudió al equipo de diseñadores gráficos para la realización de todos los iconos necesarios que mostraran el estado de un seminario, reservado, no reservado, sin sesiones disponibles como se muestra en el anexo \ref{fig:aprendizListarCursos}.
 
 \subsubsection{Listado de las sesiones disponibles}
-Para el listado de las sesiones se hizo una consulta que buscaba en la base de datos las sesiones que estaban asignadas a los grupos a los que pertenecia el usuario y en cada caso también recolectaba las sesiones confirmadas del usuario para mostrar mas información (anexo \ref{fig:usuarioSesionConfirmada}). Al finalizar el siguiente sprint donde se desarrolló la calificación de la sesión también se consultó por las sesiones aprobadas del usuario para no mostrar las sesiones disponibles.
+Para el listado de las sesiones se hizo una consulta que buscaba en la base de datos las sesiones que estaban asignadas a los grupos a los que pertenecía el usuario y en cada caso también recolectaba las sesiones confirmadas del usuario para mostrar más información (anexo \ref{fig:usuarioSesionConfirmada}). Al finalizar el siguiente sprint donde se desarrolló la calificación de la sesión también se consultó por las sesiones aprobadas del usuario para no mostrar las sesiones disponibles.
 
 \subsubsection{Confirmación y cancelación de una sesión}
 
@@ -33,11 +33,11 @@ Se crearon dos \emph{endpoints} para la confirmación y cancelación de las sesi
 
 \subsubsection{Exportar sesión al calendario}
 
-Al ser la mayoria de los clientes usuario del servicio de correo \emph{outlook} fue solicitado por los cliente una facilidad para exportar automáticamente al calendario \emph{outlook} del aprendiz. Para lograr esto el pasante investigó sobre la especificación formatos para la transmición de eventos a través del protocolo HTTP \emph{iCalendar} usado previamente por la empresa. \emph{iCalendar} es soportado por las plataformas más famosas como \emph{google, apple, microsoft outlook} entre otras. Se creo un pequeño módulo que recibida los datos de una sesión del sistema y producia un archivo en formato ics para ser descargado por el usuario y usado en su aplicación de calendario de preferencia. Con esto se pudo cumplir el requirimiento del cliente y más.
+Al ser la mayoría de los clientes usuario del servicio de correo \emph{outlook} fue solicitado por los clientes una facilidad para exportar automáticamente al calendario \emph{outlook} del aprendiz. Para lograr esto el pasante investigó sobre la especificación de formatos para la transmisión de eventos a través del protocolo HTTP \emph{iCalendar} usado previamente por la empresa. \emph{iCalendar} es soportado por las plataformas más famosas como \emph{google, apple, microsoft outlook} entre otras. Se creo un pequeño módulo que recibida los datos de una sesión del sistema y producía un archivo en formato ics para ser descargado por el usuario y usado en su aplicación de calendario de preferencia. Con esto se pudo cumplir el requerimiento del cliente y más.
 
-\subsubsection{Integración con el módulo de mensajeria interna del sistema}
+\subsubsection{Integración con el módulo de mensajería interna del sistema}
 
-En la revisión continua de las funcionalidades realizadas surgió la necesidad por parte del cliente de enviar mensajes al instructor de una sesión directamente desde el listado de las sesiones disponibles. Para esto el pasante tuvo que conectar el listado de las sesiones disponibles con el módulo de mensajeria interna del sistema colocando automanticamente como destinitario el instructor del curso.
+En la revisión continua de las funcionalidades realizadas surgió la necesidad por parte del cliente de enviar mensajes al instructor de una sesión directamente desde el listado de las sesiones disponibles. Para esto el pasante tuvo que conectar el listado de las sesiones disponibles con el módulo de mensajería interna del sistema colocando automáticamente como destinatario el instructor del curso.
 
 \subsubsection{Modal con los datos de la ubicación}
 

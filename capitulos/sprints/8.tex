@@ -1,4 +1,4 @@
-\section{Octavo sprint} % (fold)
+﻿\section{Octavo sprint} % (fold)
 \label{sec:octavo_sprint}
 
 \subsection{Objetivos}
@@ -12,9 +12,9 @@ A mitad del desarrollo del módulo uno de los clientes de FKC (Bibliomed) poseed
 
 En este sprint cuando se habla de cliente se hace referencia a la empresa Bibliomed.
 
-El SGA de Bibliomed poseía una abstración por encima de los cursos llamada Módulos, que hizo que la integración no fuera tan trivial como era esperado. Además, el cliente agrego nuevas condiciones a la interacción de los seminarios.
+El SGA de Bibliomed poseía una abstracción por encima de los cursos llamada Módulos, que hizo que la integración no fuera tan trivial como era esperado. Además, el cliente agrego nuevas condiciones a la interacción de los seminarios.
 
-Los Módulos no son más que agrupaciones de cursos en línea que deben ser realizados para su finalización. El cliente especificó que los seminarios podian ser un reemplazo o un corequisito a los cursos en línea, es decir, según los requerimientos del creador del módulo las formas de aprobarlo serian:
+Los Módulos no son más que agrupaciones de cursos en línea que deben ser realizados para su finalización. El cliente especificó que los seminarios podían ser un reemplazo o un correquisito a los cursos en línea, es decir, según los requerimientos del creador del módulo las formas de aprobarlo serian:
 
 \begin{enumerate}
 	\item Aprobar todos los cursos en línea.
@@ -22,14 +22,14 @@ Los Módulos no son más que agrupaciones de cursos en línea que deben ser real
 	\item Aprobar ambos, cursos en línea y el seminario.
 \end{enumerate}
 
-Se decidió entonces hacer las modificaciones necesarias para el soporte de estas peticiones en la base de datos del SGA de Bibliomed. El resultado final quedo plasmado en el anexo \ref{fig:baseDeDatosBibliomed}.
+Se decidió entonces hacer las modificaciones necesarias para el soporte de estas peticiones en la base de datos del SGA de Bibliomed. El resultado final quedó plasmado en el anexo \ref{fig:baseDeDatosBibliomed}.
 
 \subsection{Actividades} % (fold)
 \label{sub:actividades8}
 
 \subsubsection{Adaptación de la base de datos}
 
-La relación entre módulos y seminarios es 1 a 1, es decir, solo puede existir un seminario dentro de cada módulo, de igual manera el esquema se realizo con la flexibilidad necesaria para permitir más seminarios por módulo en el futuro. Para esto se colocó la foránea identificador del módulo en la tabla Seminario y no en los dos como es comunmente implementado. Que un seminario no pueda se asignado a dos módulos distintos se asegura a través de la interfaz. Un cambio a una interfaz más permisiva puede hacer que se necesite especificar la foránea de los dos lados de la relación. 
+La relación entre módulos y seminarios es 1 a 1, es decir, solo puede existir un seminario dentro de cada módulo, de igual manera el esquema se realizó con la flexibilidad necesaria para permitir más seminarios por módulo en el futuro. Para esto se colocó la foránea identificadora del módulo en la tabla Seminario y no en los dos como es comúnmente implementado. Que un seminario no pueda se asignado a dos módulos distintos se asegura a través de la interfaz. Un cambio a una interfaz más permisiva puede hacer que se necesite especificar la foránea de los dos lados de la relación. 
 
 Se agrego también el campo ``modo\_aprobacion'' para representar los modos de aprobación descritos anteriormente.
 
@@ -37,7 +37,7 @@ El resto del esquema termina siendo el mismo que en el SGA base de FKC. uno de l
 
 \subsubsection{Asignación de un seminario}
 
-En el SGA de Bibliomed la creación de un curso del tipo seminario paso a ser la asignación de un seminario a un módulo. Como los seminarios solo pueden existir asignados a un módulo, la asignación se hace desde la vista de edición del módulo como se demuestra en el anexo \ref{fig:creacionSeminarioBibliomed} en constraste con la creación de curso del tipo seminario del anexo \ref{fig:creacionSeminario}.
+En el SGA de Bibliomed la creación de un curso del tipo seminario paso a ser la asignación de un seminario a un módulo. Como los seminarios solo pueden existir asignados a un módulo, la asignación se hace desde la vista de edición del módulo como se demuestra en el anexo \ref{fig:creacionSeminarioBibliomed} en contraste con la creación de curso del tipo seminario del anexo \ref{fig:creacionSeminario}.
 
 Al realizarse desde la vista de actualización del módulo se asegura que el seminario exista solo en ese módulo, ya que no puede elegirse un seminario previamente creado.
 
@@ -47,12 +47,12 @@ La interfaz del listado de los módulos disponibles para el aprendiz se adaptó 
 
 \subsubsection{Aprobación de los módulos}
 
-El mayor desafio de este sprint fue la programación de la aprobación de los módulos. Para esto el pasante trabajo muy de cerca con el desarrollador del SGA de Bibliomed, asegurandose que se modificaba correctamente el algoritmo para la aprobación de un módulo de aprendizaje.
+El mayor desafío de este sprint fue la programación de la aprobación de los módulos. Para esto el pasante trabajo muy de cerca con el desarrollador del SGA de Bibliomed, asegurandose que se modificaba correctamente el algoritmo para la aprobación de un módulo de aprendizaje.
 
 El pasante proveyó una interfaz para la fácil consulta de terminación de un seminario dentro de un módulo y juntos unieron las culminaciones de los dos tipos de cursos para cumplir las restricciones pedidas por el cliente para la aprobación de los módulos.
 
 \subsubsection{Integración con el calendario del usuario}
 
-El pasante debió además hacer una integración de las sesiones confirmadas por el usuario con un módulo de calendario para el usuario implementado en el SGA de Bibliomed. Agregó a las consultas del previas que llenaban el calendario una consula que ofreciera las consultas confirmadas y atendidas por el usuario de manera que se mostraran en su calendario personal. Cuidando mantener la misma estructura de los eventos para su correcta presentación.
+El pasante debió además hacer una integración de las sesiones confirmadas por el usuario con un módulo de calendario para el usuario implementado en el SGA de Bibliomed. Agregó a las consultas previas que llenaban el calendario una consulta que ofreciera las consultas confirmadas y atendidas por el usuario de manera que se mostraran en su calendario personal. Cuidando mantener la misma estructura de los eventos para su correcta presentación.
 
 % section octavo_sprint (end)
