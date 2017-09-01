@@ -150,8 +150,40 @@ AQUI SERIA BUENO UNA INTRODUCCION CON CUANTOS MODULOS SE VAN A DESCRIBIR LUEGO P
 
 	Se creo una planilla de estilos CSS distinta para la vista de impresión de la página de la lista de aprendices de una sesión y que esta pudiera guardarse como un PDF. 
 
-	
 	% section calificación_de_las_sesiones (end)
 
+	\section{Sesiones de tipo \emph{online} para los seminarios} % (fold)
+	\label{sec:sesiones_de_seminario_tipo_}
 
+	Añadir sesiones en línea fue un proceso parecido al de agregar los seminarios a los cursos. Se especificaron los datos que diferenciaban a las sesiones en línea de las ya existentes y se decidió por lo tanto crear una especialización de la tabla Sesión en física y ``en línea'' (anexo \ref{fig:baseDeDatosFinal}).
+
+	Se ingresó un campo tipo a la tabla Sesión para diferenciarlas. el entero cero representa las sesiones físicas y el uno se refiere a las en línea.
+
+	Para crear una sesión online se agregó una opción de tipo en la creación de las sesiones (anexo \ref{fig:creacionSesion}) al igual que con los cursos.
+
+	Este tipo de sesiones debían ser mostradas de forma distinta en las vistas que involucraran las sesiones ya que estas cuentan con datos distintos. por lo que se modificó la visualización del antiguo modal del aprendiz para la ubicación. En el caso de una sesión física se seguiría mostrando el mismo modal y en caso contrario se mostraría el modal con los datos referentes a la sesión en línea solo en el caso en que el usuario haya confirmado dicha sesión.
+
+	En lugares donde se listan las sesiones el campo de ubicación paso a llamarse ``ubicación/url'' y en el caso de una sesión en línea se muestra e texto ``sesión en línea'' en vez del nombre de la ubicación. 
+
+	% section sesiones_de_seminario_tipo_ (end)
+
+	\section{Notificaciones} % (fold)
+	\label{sec:notificaciones}
+	
+	Las notificaciones en el sistema generalmente son hechas a través de correos, el pasante decidió mantener esta práctica. Se utilizó para este propósito la librería \emph{swift mailer}.
+
+	El proceso de agregar las notificaciones paso por crear una función de envoltura a la librerías de \emph{swift mailer} que recibiera los datos básicos necesarios para enviar un correo como: encabezado, mensaje y destinatarios dentro de un arreglo.
+
+	El resto fue ubicar los envíos de correos en los sitios adecuados, llenando los datos correctos según fuera el caso.
+
+	Al comenzar a probar el sistema, los clientes se dieron cuenta que las notificaciones podían llegar a ser demasiadas en cursos compuestos por muchos estudiantes, por lo que luego se desarrolló una opción para desactivar los correos recibidos por el instructor de una sesión. como ejemplo se muestra uno de los correos enviados por la aplicación en el anexo \ref{fig:correos}.
+	% section notificaciones (end)
+
+	\section{Estadísticas} % (fold)
+	\label{sec:estadísticas}
+	
+	El pasante debió modificar algunas consultas en las estadísticas para que estas pudieran reflejar los resultados de los seminarios. generalmente suavizando condiciones de los \emph{joins}. Se diferenciaron los seminarios con el uso de un icono distintivo.
+
+	Además, algunos datos en la tabla de visualización de las estadísticas no concordaban con los datos referentes a los seminarios. Estos datos se omitieron como: momento de inicio, momento de terminación, tiempo de aprendizaje que más adecuados y fácilmente medibles en los cursos web.
+	% section estadísticas (end)
 
