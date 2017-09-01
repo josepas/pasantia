@@ -1,2 +1,27 @@
 \chapter{Solución del problema}
 \thispagestyle{empty} % Quitar el número
+
+En este capítulo se expresan las técnicas utilizadas por el pasante para el cumplimiento de las funcionalidades expresadas en el capítulo anterior.
+
+El lenguaje de programación usado como base para el Sistema de Gestión de Aprendizaje (SGA) de Fischer, Knochblauch \& CO (FKC) es PHP. La mayor parte del código escrito por el pasante para la solución es por lo tanto escrita en este lenguaje.
+
+El trabajo se dividió en módulos. Se analizaron sus dependencias con el fin de crear un plan de trabajo organizado, que permitiera además la entrega constante de software funcional, apegandose al marco de trabajo iterativo.
+
+AQUI SERIA BUENO UNA INTRODUCCION CON CUANTOS MODULOS SE VAN A DESCRIBIR LUEGO PERO LA METO AL FINAL PORQUE NO ESTOY MUY CLARO CUAL SERÍA UNA CLARA DIVISIÓN.
+
+	\section{Ubicaciones} % (fold)
+	\label{sec:ubicaciones}
+	
+	Para soportar esta funcionalidad en la base de datos se creó una tabla llamada ubicación con los datos que parecieron relevantes para el cliente, ilustrada en el anexo \ref{fig:baseDeDatosFinal}. Dicha ubicación estaría relacionada con las sesiones, pudiendo una ubicación alojar distintas sesiones. El SGA permite mantener distintos clientes para dar soporte de grandes compañías con filiales, por lo que las ubicaciones se construyen aisladas del grueso de la funcionalidad (los seminarios) para poder ser usadas luego en funcionalidades futuras o integrada en sistemas de los clientes activos de SGAs de FKC. Tienen una relación directa con la tabla cliente a través de una llave foránea. Para la clave primaria se usó un identificador creciente autogenerado.
+
+	Se acordó que el manejo de las ubicaciones se llevara a cabo en el área de administración de la aplicación, por el usuario administrador. Se agrego una nueva entrada de manejo de ubicaciones en la interfaz del administrador con este fin.
+
+	Se logró conseguir un producto gratis de esta aplicación que permitiera mostrar ubicaciones marcadas en un mapa generado por Google enganchado a un iframe en el sistema, con tan solo especificar medidas latitud y longitud, que tuvieron que ser agregadas luego a la tabla ubicación.
+
+	Para integrar la visualización de mapas usando la aplicación Google maps de manera gratuita para la empresa, el usuario debía ingresar los valores de latitud y longitud de la ubicación deseada. Para esto el pasante ofreció como solución analizar gramaticalmente la URL mostrada en la aplicación web google maps por medio de expresiones regulares para extraer los valores necesarios, facilitando así al usuario el proceso de agregar una ubicación sin que la empresa tuviera que usar las funcionalidades pagas de google.
+
+
+
+	% section ubicaciones (end)
+
+

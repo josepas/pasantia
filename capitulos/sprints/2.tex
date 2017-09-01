@@ -14,20 +14,14 @@ En este sprint se desarrolló el módulo de manejo de ubicaciones representado e
 
 \subsubsection{Ampliación de la base de datos}
 
-Para soportar esta funcionalidad en la base de datos se creó una tabla llamada ubicación con los datos que parecieron relevantes para el cliente, ilustrada en el anexo \ref{fig:baseDeDatosFinal}. Dicha ubicación estaría relacionada con las sesiones, pudiendo una ubicación alojar distintas sesiones. El SGA permite mantener distintos clientes para dar soporte de grandes compañías
-s con filiales, por lo que las ubicaciones se construyen aisladas del grueso de la funcionalidad (los seminarios) para poder ser usadas luego en funcionalidades futuras o integrada en sistemas de los clientes activos de SGAs de FKC. Tienen una relación directa con la tabla cliente a través de una llave foránea. Para la clave primaria se usó un identificador creciente autogenerado.
-
 \subsubsection{Creación del CRUD}
 
-Se acordó que el manejo de las ubicaciones se llevara a cabo en el área de administración de la aplicación, por el usuario administrador. Se agrego una nueva entrada de manejo de ubicaciones en la interfaz del administrador con este fin.
 
 Se procedió entonces a la construcción de interfaces que permitieran la creación de una ubicación nueva, listar las ubicaciones existentes, modificar una ubicación existente tanto como eliminar una ubicación. Se hizo énfasis en que las interfaces creadas siguieran un aspecto consistente con las otras funciones de administración ilustradas en los apéndices \ref{fig:listarUbicaciones} y \ref{fig:editarUbicaciones}.
 
 \subsubsection{Integración con google maps}
 
-Al terminar la funcionalidad básica el dueño del producto sugirió integrar las ubicaciones del sistema con la aplicación Google maps. Tarea para la cual el pasante debió investigar sobre el uso de este API. Se logró conseguir un producto gratis de esta aplicación que permitiera mostrar ubicaciones marcadas en un mapa generado por Google enganchado a un iframe en el sistema, con tan solo especificar medidas latitud y longitud, que tuvieron que ser agregadas luego a la tabla ubicación.
-
-Para mantener el uso de esta funcionalidad de manera gratuita para la empresa, el usuario debía ingresar los valores de latitud y longitud de la ubicación deseada, para esto el pasante ofreció como solución analizar gramaticalmente la URL mostrada en la aplicación web google maps por medio de expresiones regulares para extraer los valores necesarios, facilitando así al usuario el proceso de agregar una ubicación sin que la empresa tuviera que usar las funcionalidades pagas de google.
+Al terminar la funcionalidad básica el dueño del producto sugirió integrar las ubicaciones del sistema con la aplicación Google maps. Tarea para la cual el pasante debió investigar sobre el uso de este API. 
 
 Se recomienda en un futuro el pago de este API (Javascript de google maps) si se desea facilitar aún más la interacción con mapas dentro de la aplicación. Con el beneficio de no depender que en algún momento el proveedor google modifique la estructura de sus URL o desaparezca los datos de latitud y longitud de las mismas.
 
