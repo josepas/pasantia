@@ -14,7 +14,9 @@ Hasta el momento todo el desarrollo se había realizado en servidores de prueba,
 \subsection{Actividades} % (fold)
 \label{sub:actividades9}
 
-\subsubsection{Migración para el soporte de caracteres UTF-8}
+\begin{itemize}
+
+\item Migración para el soporte de caracteres UTF-8
 
 Al integrar las nuevas funcionalidades en el SGA de Bibliomed el pasante se dio cuenta que muchos de los caracteres especiales de lenguaje alemán perdían representación. Esto se debió a que el SGA de Bibliomed representaba caracteres en el formato UTF-8 en comparación con el más viejo ISO del sistema base.
 
@@ -24,7 +26,7 @@ Para lograr esto debían guardarse todos los archivos con el nuevo formato que p
 
 Los otros desarrolladores realizaron las pruebas pertinentes para comprobar el resultado de la operación.
 
-\subsubsection{Implantación del SGA de FKC}
+\item Implantación del SGA de FKC
 
 El proceso de implantación del sistema consistió en modificar las tablas en el servidor objetivo y enviar los archivos a través de FTP. Este era un proceso totalmente manual.
 
@@ -32,10 +34,11 @@ Para FKC debió hacerse en dos servidores distintos, uno para la filial en Munic
 
 Se realizaron pruebas manuales para la integración del módulo con las demás partes del sistema.
 
-\subsubsection{Implantación del SGA Bibliomed}
+\item Implantación del SGA Bibliomed
 
 El proceso fue análogo a la implantación del SGA de FKC solo cuidando las diferencias en la estructura de la base de datos.
 
+\end{itemize}
 
 
 % section noveno_sprint (end)
