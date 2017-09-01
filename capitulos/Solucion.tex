@@ -56,10 +56,58 @@ AQUI SERIA BUENO UNA INTRODUCCION CON CUANTOS MODULOS SE VAN A DESCRIBIR LUEGO P
 	Para esto se debió modificar el módulo de \emph{login} para agregar la autentificación del nuevo usuario, que primero confirma si el usuario tiene una jerarquía más alta que la de instructor (un usuario de más rango que contenga sus funciones), en caso contrario, verifica si el usuario que intenta ingresar es instructor de algún curso.
 
 	El manejo de la autorización es realizado de forma manual, así que solo se debió poblar una estructura del tipo diccionario con las funcionalidades que se consideraran necesarias para el usuario instructor. En este caso, administrar los cursos de los que es instructor, funcionalidad desarrollada en el \emph{sprint} cinco.
-
 	
 	% section usuario_instructor (end)
 
+	\section{Sesiones de un seminario} % (fold)
+	\label{sec:sesiones_de_un_seminario}
+	
+	Para soportar la funcionalidad en la base de datos se creó la tabla llamada Sesión que contiene todos los datos relevantes para la descripción de una sesión. Es importante recalcar que las sesiones sólo tienen sentido si forman parte de un curso del tipo seminario, cosa que se evidencia en la relación de agrupación en el modelo final de la base de datos en el anexo \ref{fig:baseDeDatosFinal}. 
+
+	Un seminario puede estar compuesto por muchas sesiones, mientras que las sesiones no pueden ser compartidas entre los distintos seminarios, por lo que se representa como una relación 1 a muchos. 
+
+	Una sesión se lleva a cabo en una ubicación por lo que se relacionan estas dos tablas. Una sesión puede suceder en solo una ubicación y las ubicaciones pueden albergar una cantidad de sesiones, por lo que la relación se modelo como 1 a muchos.
+
+	Una sesión además es dictada/supervisada por un instructor por lo que se modelo como una relación 1 a muchos análoga a las demás.
+
+	La última relación es la más interesante, las sesiones se relacionan directamente con los usuarios que asisten a ella (aprendices) y cada uno debe tener un espacio en la base de datos para modelar el resultado que este obtuvo en la misma. es una segunda relación de la tabla sesiones con la tabla Usuario que en este caso es muchos a muchos pues un usuario puede participar en cualquier número de sesiones que le hayan sido asignadas, mientras que a una sesión concurren la cantidad de usuarios que su capacidad permita. Se modelo con una tabla auxiliar que posee las dos foráneas y toda la información que la relación \emph{sesión-usuario} necesitó al momento del desarrollo y la que pueda necesitar en el futuro, haciendo el diseño flexible, una de las metas del proyecto.
+
+	Se procedió a integrar el módulo con las ubicaciones. Para poder crear una sesión debía estar creada en primer lugar una ubicación, por lo tanto, se integró una entrada al módulo de ubicaciones desde el CRUD de la sesión que mantuviera en forma de \emph{cookie} cual sesión estaba siendo modificada para volver a ella. La capacidad de la sesión no podrá ser mayor a la capacidad de la locación seleccionada.
+
+	Además, una sesión no podría ser creada en una fecha en la que la ubicación seleccionada estuviera ocupada (tuviera otra sesión cuyo horario choque). Esta limitación dio pie a que se implementara una visualización de las sesiones activas de una ubicación.
+
+	Para el campo de instructor podía ser seleccionado cualquier usuario activo del sistema del cliente en el que se esté realizando la operación. El cliente puede obtenerse por medio de la tabla curso, así que por normalización no se agregó información del cliente a la sesión como si se agregó a la ubicación.
+
+	Se agregaron campos que limitaban las confirmaciones y la cancelación de una sesión por parte de los aprendices, con el fin de dar seguridad al instructor de la cantidad asistentes a un curso.
+
+	Las sesiones tienen un campo ``activa'' para que puedan ser desactivadas en caso de cualquier eventualidad manteniendo los datos de la sesión para poder así ser reusados.
+
+	Las fechas de inicio y final de una sesión no pueden ser cambiadas si ya poseen usuarios confirmados, por lo que primero tendrían que ser eliminados y notificados de la misma para poder realizar los cambios.
+
+	El borrado de una sesión se puede realizar desde el listado de las sesiones en el administrador como se muestra en las opciones del anexo \ref{fig:listarSesiones}. El usuario instructor no puede borrar la sesión, solo desactivarla.
+
+	Para la visualización se usó un \emph{plug-in} de calendario bootstrap-year-calendar creado usando \emph{bootstrap} y \emph{jquery}. \emph{Plug-in} que permite la representación de los meses en distintos lenguajes, así como la personalización de sus colores, aspectos necesarios para el amplio rango de necesidades de los clientes de FKC.
+
+	Este calendario se llena con AJAX a través de un \emph{endpoint} creado para tal fin que devuelve las sesiones activas de la locación como un objeto json que luego se muestra en los días del calendario como se muestra en el anexo \ref{fig:editarUbicaciones}. las sesiones desactivadas se muestran con un tipo de letra más pequeño y en cursiva para diferenciarlas de las demás.
+	% section sesiones_de_un_seminario (end)
+
+	\section{Interfaz para el usuario aprendiz} % (fold)
+	\label{sec:interfaz_para_el_usuario_aprendiz}
+	
+	El reto más importante de esta etapa del proyecto fue encontrar donde mostrar las sesiones de los cursos, si crear otra pestaña en el menu del sistema solo para los cursos del tipo seminario o integrar de alguna forma los cursos diferenciándolos de los demás.
+
+	La opción que se tomó fue la segunda. La primera opción agregaba una entrada más a un menu que comenzaba a lucir un poco abarrotado, pero, la segunda opción trajo sus dificultades. Se tuvo que modificar un código escrito de una forma complicada debido al mal uso de la librería de maquetado \emph{Smarty}. La interfaz era una lista rígida de los cursos como se muestra en el anexo \ref{fig:aprendizListarViejo} por lo que se decidió dar una opción para generar una pestaña debajo de cada curso.
+
+	Este nuevo espacio generado debajo de los seminarios permitió colocar las sesiones disponibles del usuario, pero termino siendo un poco inconsistente que unos cursos tuvieran la opción de generar pestañas con más información y otros no. Como respuesta a esto los clientes sugirieron que ingresara un nuevo campo a la tabla curso para colocar una imagen que pudiera ser mostrada en todas las pestañas junto con la descripción del curso.
+
+	A simple vista era difícil para el usuario diferenciar los seminarios de los cursos multimedia por lo que se agregó un icono para los seminarios al lado del nombre de cada curso. Una vez visibles los seminarios, se consideró necesario notificar al usuario visualmente que la acción de confirmación de una sesión de seminario era necesaria o que dicha acción ya estaba realizada.
+
+	El pasante acudió al equipo de diseñadores gráficos para la realización de todos los iconos necesarios que mostraran el estado de un seminario, reservado, no reservado, sin sesiones disponibles como se muestra en el anexo \ref{fig:aprendizListarCursos}.
+
+	Para el listado de las sesiones se hizo una consulta que buscaba en la base de datos las sesiones que estaban asignadas a los grupos a los que pertenecía el usuario y en cada caso también recolectaba las sesiones confirmadas del usuario para mostrar más información (anexo \ref{fig:usuarioSesionConfirmada}). Al finalizar el siguiente sprint donde se desarrolló la calificación de la sesión también se consultó por las sesiones aprobadas del usuario para no mostrar las sesiones disponibles.
+
+	Al ser la mayoría de los clientes usuario del servicio de correo \emph{outlook} fue solicitado por los clientes una facilidad para exportar automáticamente al calendario \emph{outlook} del aprendiz. Para lograr esto el pasante investigó sobre la especificación de formatos para la transmisión de eventos a través del protocolo HTTP \emph{iCalendar} usado previamente por la empresa. \emph{iCalendar} es soportado por las plataformas más famosas como \emph{google, apple, microsoft outlook} entre otras. Se creo un pequeño módulo que recibida los datos de una sesión del sistema y producía un archivo en formato ics para ser descargado por el usuario y usado en su aplicación de calendario de preferencia. Con esto se pudo cumplir el requerimiento del cliente y más.
+	% section interfaz_para_el_usuario_aprendiz (end)
 
 
 
