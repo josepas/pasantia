@@ -7,9 +7,9 @@ El lenguaje de programación usado como base para el Sistema de Gestión de Apre
 
 El trabajo se dividió en módulos. Se analizaron sus dependencias con el fin de crear un plan de trabajo organizado, que permitiera además la entrega constante de software funcional, apegandose al marco de trabajo iterativo.
 
-AQUI SERIA BUENO UNA INTRODUCCION CON CUANTOS MODULOS SE VAN A DESCRIBIR LUEGO PERO LA METO AL FINAL PORQUE NO ESTOY MUY CLARO CUAL SERÍA UNA CLARA DIVISIÓN.
+A continuación se expone una división de los retos mas importantes y como fueron solucionados.
 
-	\section{Ubicaciones} % (fold)
+	\section{Módulo ubicaciones} % (fold)
 	\label{sec:ubicaciones}
 	
 	Para soportar esta funcionalidad en la base de datos se creó una tabla llamada ubicación con los datos que parecieron relevantes para el cliente, ilustrada en el anexo \ref{fig:baseDeDatosFinal}. Dicha ubicación estaría relacionada con las sesiones, pudiendo una ubicación alojar distintas sesiones. El SGA permite mantener distintos clientes para dar soporte de grandes compañías con filiales, por lo que las ubicaciones se construyen aisladas del grueso de la funcionalidad (los seminarios) para poder ser usadas luego en funcionalidades futuras o integrada en sistemas de los clientes activos de SGAs de FKC. Tienen una relación directa con la tabla cliente a través de una llave foránea. Para la clave primaria se usó un identificador creciente autogenerado.
@@ -22,7 +22,7 @@ AQUI SERIA BUENO UNA INTRODUCCION CON CUANTOS MODULOS SE VAN A DESCRIBIR LUEGO P
 
 	% section ubicaciones (end)
 
-	\section{Cursos del tipo Seminario} % (fold)
+	\section{Módulo Cursos del tipo Seminario} % (fold)
 	\label{sec:cursos_del_tipo_seminario}
 	
 	Luego de examinar las tablas y entender el funcionamiento de los cursos y como son asignados a los grupos (Anexo \ref{fig:baseDeDatosPrevia}) se decidió extender esta tabla como una generalización.
@@ -114,7 +114,7 @@ AQUI SERIA BUENO UNA INTRODUCCION CON CUANTOS MODULOS SE VAN A DESCRIBIR LUEGO P
 	% section interfaz_para_el_usuario_aprendiz (end)
 
 	\section{Calificación de las sesiones} % (fold)
-	\label{sec:calificación_de_las_sesiones}
+	\label{sec:calificacion_de_las_sesiones}
 	
 	Un usuario solo debe poseer una única entrada en la tabla Sesión-Usuario que lo relacione inequívocamente con una sesión, para esto se utilizó como clave primaria de la tabla la combinación de las foráneas \emph{sesion\_id} y \emph{usuario\_id}. Además, se implementó una excepción para arrojar un error al usuario y notificar al administrador del sistema por medio de una entrada en la bitácora del sistema si este caso llegara a suceder.
 
@@ -180,7 +180,7 @@ AQUI SERIA BUENO UNA INTRODUCCION CON CUANTOS MODULOS SE VAN A DESCRIBIR LUEGO P
 	% section notificaciones (end)
 
 	\section{Estadísticas} % (fold)
-	\label{sec:estadísticas}
+	\label{sec:estadisticas}
 	
 	El pasante debió modificar algunas consultas en las estadísticas para que estas pudieran reflejar los resultados de los seminarios. generalmente suavizando condiciones de los \emph{joins}. Se diferenciaron los seminarios con el uso de un icono distintivo.
 
@@ -188,7 +188,7 @@ AQUI SERIA BUENO UNA INTRODUCCION CON CUANTOS MODULOS SE VAN A DESCRIBIR LUEGO P
 	% section estadísticas (end)
 
 	\section{Adaptación de los módulos al SGA de Bibliomed} % (fold)
-	\label{sec:adaptación_de_los_módulos_al_sga_de_bibliomed}
+	\label{sec:adaptacion_de_los_modulos_al_sga_de_bibliomed}
 	
 	El SGA de Bibliomed poseía una abstracción por encima de los cursos llamada Módulos, que hizo que la integración no fuera tan trivial como era esperado. Además, el cliente agrego nuevas condiciones a la interacción de los seminarios.
 
@@ -211,5 +211,7 @@ AQUI SERIA BUENO UNA INTRODUCCION CON CUANTOS MODULOS SE VAN A DESCRIBIR LUEGO P
 	Al realizarse desde la vista de actualización del módulo se asegura que el seminario exista solo en ese módulo, ya que no puede elegirse un seminario previamente creado.
 
 	El pasante debió además hacer una integración de las sesiones confirmadas por el usuario con un módulo de calendario para el usuario implementado en el SGA de Bibliomed. Agregó a las consultas previas que llenaban el calendario una consulta que ofreciera las consultas confirmadas y atendidas por el usuario de manera que se mostraran en su calendario personal. Cuidando mantener la misma estructura de los eventos para su correcta presentación.
+
+
 
 	% section adaptación_de_los_módulos_al_sga_de_bibliomed (end)
