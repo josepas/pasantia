@@ -1,13 +1,13 @@
-\chapter{Solución del problema}
+﻿\chapter{Solución del problema}
 \thispagestyle{empty} % Quitar el número
 
 En este capítulo se expresan las técnicas utilizadas por el pasante para el cumplimiento de las funcionalidades expresadas en el capítulo anterior.
 
 El lenguaje de programación usado como base para el Sistema de Gestión de Aprendizaje (SGA) de Fischer, Knochblauch \& CO (FKC) es PHP. La mayor parte del código escrito por el pasante para la solución es por lo tanto escrita en este lenguaje.
 
-El trabajo se dividió en módulos. Se analizaron sus dependencias con el fin de crear un plan de trabajo organizado, que permitiera además la entrega constante de software funcional, apegandose al marco de trabajo iterativo.
+El trabajo se dividió en módulos. Se analizaron sus dependencias con el fin de crear un plan de trabajo organizado, que permitiera además la entrega constante de software funcional, apegándose al marco de trabajo iterativo.
 
-A continuación se expone una división de los retos mas importantes y como fueron solucionados.
+A continuación, se expone una división de los retos más importantes y como fueron solucionados.
 
 	\section{Módulo ubicaciones} % (fold)
 	\label{sec:ubicaciones}
@@ -51,7 +51,7 @@ A continuación se expone una división de los retos mas importantes y como fuer
 	\section{Usuario instructor} % (fold)
 	\label{sec:usuario_instructor}
 	
-	Para el manejo de la puntuación de las sesiones y el manejo de la asistencia se decidió crear un nuevo tipo de usuario en el sistema que puediera apoyar al administrador en estas tareas. el usuario administrador tiene acceso a todas las funciones de un instructor en todos los cursos del sistema, mientras que el usuario solo tiene acceso a las sesiones en la que él mismo es él instructor.
+	Para el manejo de la puntuación de las sesiones y el manejo de la asistencia se decidió crear un nuevo tipo de usuario en el sistema que pudiera apoyar al administrador en estas tareas. el usuario administrador tiene acceso a todas las funciones de un instructor en todos los cursos del sistema, mientras que el usuario solo tiene acceso a las sesiones en la que él mismo es él instructor.
 
 	Para esto se debió modificar el módulo de \emph{login} para agregar la autentificación del nuevo usuario, que primero confirma si el usuario tiene una jerarquía más alta que la de instructor (un usuario de más rango que contenga sus funciones), en caso contrario, verifica si el usuario que intenta ingresar es instructor de algún curso.
 
@@ -94,9 +94,9 @@ A continuación se expone una división de los retos mas importantes y como fuer
 	\section{Usuario aprendiz} % (fold)
 	\label{sec:interfaz_para_el_usuario_aprendiz}
 	
-	El reto más importante de esta etapa del proyecto fue encontrar donde mostrar las sesiones de los cursos, si crear otra pestaña en el menu del sistema solo para los cursos del tipo seminario o integrar de alguna forma los cursos diferenciándolos de los demás.
+	El reto más importante de esta etapa del proyecto fue encontrar donde mostrar las sesiones de los cursos, si crear otra pestaña en el menú del sistema solo para los cursos del tipo seminario o integrar de alguna forma los cursos diferenciándolos de los demás.
 
-	La opción que se tomó fue la segunda. La primera opción agregaba una entrada más a un menu que comenzaba a lucir un poco abarrotado, pero, la segunda opción trajo sus dificultades. Se tuvo que modificar un código escrito de una forma complicada debido al mal uso de la librería de maquetado \emph{Smarty}. La interfaz era una lista rígida de los cursos como se muestra en el anexo \ref{fig:aprendizListarViejo} por lo que se decidió dar una opción para generar una pestaña debajo de cada curso.
+	La opción que se tomó fue la segunda. La primera opción agregaba una entrada más a un menú que comenzaba a lucir un poco abarrotado, pero, la segunda opción trajo sus dificultades. Se tuvo que modificar un código escrito de una forma complicada debido al mal uso de la librería de maquetado \emph{Smarty}. La interfaz era una lista rígida de los cursos como se muestra en el anexo \ref{fig:aprendizListarViejo} por lo que se decidió dar una opción para generar una pestaña debajo de cada curso.
 
 	Este nuevo espacio generado debajo de los seminarios permitió colocar las sesiones disponibles del usuario, pero termino siendo un poco inconsistente que unos cursos tuvieran la opción de generar pestañas con más información y otros no. Como respuesta a esto los clientes sugirieron que ingresara un nuevo campo a la tabla curso para colocar una imagen que pudiera ser mostrada en todas las pestañas junto con la descripción del curso.
 
