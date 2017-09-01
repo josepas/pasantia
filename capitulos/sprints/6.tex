@@ -14,41 +14,8 @@ En este sprint, una vez que se contó con confirmaciones válidas que procedían
 \subsection{Actividades} % (fold)
 \label{sub:actividades6}
 
-\subsubsection{Mantener la integridad de la base de datos}
+\subsubsection{Calificación una sesión}
 
-Un usuario solo debe poseer una única entrada en la tabla Sesión-Usuario que lo relacione inequívocamente con una sesión, para esto se utilizó como clave primaria de la tabla la combinación de las foráneas \emph{sesion\_id} y \emph{usuario\_id}. Además, se implementó una excepción para arrojar un error al usuario y notificar al administrador del sistema por medio de una entrada en la bitácora del sistema si este caso llegara a suceder.
-
-\subsubsection{Calificar una sesión}
-
-Una vez asegurada la unicidad de la relación usuario cursa una sesión se puede proceder a calificarla. Tanto el administrador como el instructor pueden calificar una sesión. La calificación de la sesión permite al usuario aprendiz cambiar el estado del seminario que se encuentra en la tabla Curso. Para facilitar la explicación se construyó un diagrama de estados que demuestra los posibles cambios (anexo \ref{fig:diagramaEstadosSesion}). 
-
-Para la calificación se construyeron dos \emph{endpoints} uno para la modificación de la asistencia y otro que soporta la modificación del estado aprobado/reprobado. que solo pueden ser alcanzados si la fecha de inicio de la sesión ha sido alcanzada.
-
-El proceso puede resumirse en:
-
-\begin{enumerate}
-	% 1
-	\item Un administrador asigna un seminario a un grupo compuesto por una cantidad de usuarios (anexo \ref{fig:asignarSeminario}). 
-	
-	% 2
-	\item Una vez asignado el seminario, todas las sesiones que lo componen son asignadas como posibles para los usuarios del grupo a través de la interfaz de listar cursos del anexo \ref{fig:aprendizListarCursos}.
-
-	% 3 
-	\item El usuario puede confirmar cualquier sesión que no esté llena.
-
-	% 4 
-	\item Con una sesión confirmada el usuario puede cancelarla y volver al punto 1 para elegir una sesión distinta.
-
-	% 5
-	\item El usuario que confirmó una sesión asiste a ella. El instructor por lo tanto puede marcar la asistencia en la interfaz construida para ello que se muestra en el anexo \ref{fig:gestionarSesion}. Si el seminario no posee examen final, la sesión y por lo tanto el seminario, son aprobados.
-
-	% 6
-	\item Si el seminario tiene un examen presencial se le presenta la opción de notificar que el aprendiz aprobó el examen, en caso de dejar este campo en blanco se intuye que el usuario reprobó dicho examen.
-
-	% 7
-	\item En el caso de que el aprendiz sea reprobado el seminario se marca como reprobado hasta que el usuario confirme otra sesión.
-
-\end{enumerate}
 
 \subsubsection{Actualizar la funcionalidad de borrado de una sesión}
 
@@ -56,13 +23,12 @@ Se decidió agregar condiciones para el borrado de las sesiones al desarrollar e
 
 \subsubsection{Generación de PDF}
 
-Se permitió además al usuario instructor la opción de imprimir una lista con los estudiantes de la sesión que contiene los datos de la sesión y los estados posibles de cada uno dependiendo del tipo de seminario. Esto se logró creando una planilla de estilos CSS distinta para la vista de impresión de la página. El resultado se muestra en el anexo \ref{fig:listarAlumnos}.
+Se permitió además al usuario instructor la opción de imprimir una lista con los estudiantes de la sesión que contiene los datos de la sesión y los estados posibles de cada uno dependiendo del tipo de seminario. El resultado se muestra en el anexo \ref{fig:listarAlumnos}.
 
 
 \subsubsection{Módulo de seminarios como una opción}
 
-Dado que el SGA es un producto que se personaliza para los distintos clientes de la compañía
-, los clientes se interesaron en tener la opción de crear una nuevo SGA sin la funcionalidad del módulo seminario creado por el pasante. Para poder ofrecerlo con una opción extra que pudiera flexibilizar el esquema de precios del producto.
+Dado que el SGA es un producto que se personaliza para los distintos clientes de la compañía, los clientes se interesaron en tener la opción de crear una nuevo SGA sin la funcionalidad del módulo seminario creado por el pasante. Para poder ofrecerlo con una opción extra que pudiera flexibilizar el esquema de precios del producto.
 
 Para esto el pasante debió modificar la funcionalidad de otro tipo de usuario: \emph{super admin}. Específicamente la creación y actualización de un cliente. Dependiendo de si los cursos del tipo seminario estaban activados o no, todas las opciones relacionadas con este módulo debían desaparecer. Entre estas:
 

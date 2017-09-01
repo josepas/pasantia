@@ -91,7 +91,7 @@ AQUI SERIA BUENO UNA INTRODUCCION CON CUANTOS MODULOS SE VAN A DESCRIBIR LUEGO P
 	Este calendario se llena con AJAX a través de un \emph{endpoint} creado para tal fin que devuelve las sesiones activas de la locación como un objeto json que luego se muestra en los días del calendario como se muestra en el anexo \ref{fig:editarUbicaciones}. las sesiones desactivadas se muestran con un tipo de letra más pequeño y en cursiva para diferenciarlas de las demás.
 	% section sesiones_de_un_seminario (end)
 
-	\section{Interfaz para el usuario aprendiz} % (fold)
+	\section{Usuario aprendiz} % (fold)
 	\label{sec:interfaz_para_el_usuario_aprendiz}
 	
 	El reto más importante de esta etapa del proyecto fue encontrar donde mostrar las sesiones de los cursos, si crear otra pestaña en el menu del sistema solo para los cursos del tipo seminario o integrar de alguna forma los cursos diferenciándolos de los demás.
@@ -106,8 +106,52 @@ AQUI SERIA BUENO UNA INTRODUCCION CON CUANTOS MODULOS SE VAN A DESCRIBIR LUEGO P
 
 	Para el listado de las sesiones se hizo una consulta que buscaba en la base de datos las sesiones que estaban asignadas a los grupos a los que pertenecía el usuario y en cada caso también recolectaba las sesiones confirmadas del usuario para mostrar más información (anexo \ref{fig:usuarioSesionConfirmada}). Al finalizar el siguiente sprint donde se desarrolló la calificación de la sesión también se consultó por las sesiones aprobadas del usuario para no mostrar las sesiones disponibles.
 
+	Se crearon dos \emph{endpoints} para la confirmación y cancelación de las sesiones que se acceden mediante el ultimo botón en el listado de la sesión. si no hay una sesión confirmada por el usuario es posible confirmar cualquiera de ellas. Al poseer una sesión confirmada el usuario solo tiene la opción de cancelar la sesión confirmada actual y se hace el chequeo en el \emph{endpoint} de que la cancelación sea posible dados los datos de la sesión al igual que en la confirmación.
+
 	Al ser la mayoría de los clientes usuario del servicio de correo \emph{outlook} fue solicitado por los clientes una facilidad para exportar automáticamente al calendario \emph{outlook} del aprendiz. Para lograr esto el pasante investigó sobre la especificación de formatos para la transmisión de eventos a través del protocolo HTTP \emph{iCalendar} usado previamente por la empresa. \emph{iCalendar} es soportado por las plataformas más famosas como \emph{google, apple, microsoft outlook} entre otras. Se creo un pequeño módulo que recibida los datos de una sesión del sistema y producía un archivo en formato ics para ser descargado por el usuario y usado en su aplicación de calendario de preferencia. Con esto se pudo cumplir el requerimiento del cliente y más.
+
+	En la revisión continua de las funcionalidades realizadas surgió la necesidad por parte del cliente de enviar mensajes al instructor de una sesión directamente desde el listado de las sesiones disponibles. Para esto el pasante tuvo que conectar el listado de las sesiones disponibles con el módulo de mensajería interna del sistema colocando automáticamente como destinatario el instructor del curso.
 	% section interfaz_para_el_usuario_aprendiz (end)
+
+	\section{Calificación de las sesiones} % (fold)
+	\label{sec:calificación_de_las_sesiones}
+	
+	Un usuario solo debe poseer una única entrada en la tabla Sesión-Usuario que lo relacione inequívocamente con una sesión, para esto se utilizó como clave primaria de la tabla la combinación de las foráneas \emph{sesion\_id} y \emph{usuario\_id}. Además, se implementó una excepción para arrojar un error al usuario y notificar al administrador del sistema por medio de una entrada en la bitácora del sistema si este caso llegara a suceder.
+
+	Una vez asegurada la unicidad de la relación usuario cursa una sesión se puede proceder a calificarla. Tanto el administrador como el instructor pueden calificar una sesión. La calificación de la sesión permite al usuario aprendiz cambiar el estado del seminario que se encuentra en la tabla Curso. Para facilitar la explicación se construyó un diagrama de estados que demuestra los posibles cambios (anexo \ref{fig:diagramaEstadosSesion}). 
+
+	Para la calificación se construyeron dos \emph{endpoints} uno para la modificación de la asistencia y otro que soporta la modificación del estado aprobado/reprobado. que solo pueden ser alcanzados si la fecha de inicio de la sesión ha sido alcanzada.
+
+	El proceso puede resumirse en:
+
+	\begin{enumerate}
+		% 1
+		\item Un administrador asigna un seminario a un grupo compuesto por una cantidad de usuarios (anexo \ref{fig:asignarSeminario}). 
+		
+		% 2
+		\item Una vez asignado el seminario, todas las sesiones que lo componen son asignadas como posibles para los usuarios del grupo a través de la interfaz de listar cursos del anexo \ref{fig:aprendizListarCursos}.
+
+		% 3 
+		\item El usuario puede confirmar cualquier sesión que no esté llena.
+
+		% 4 
+		\item Con una sesión confirmada el usuario puede cancelarla y volver al punto 1 para elegir una sesión distinta.
+
+		% 5
+		\item El usuario que confirmó una sesión asiste a ella. El instructor por lo tanto puede marcar la asistencia en la interfaz construida para ello que se muestra en el anexo \ref{fig:gestionarSesion}. Si el seminario no posee examen final, la sesión y por lo tanto el seminario, son aprobados.
+
+		% 6
+		\item Si el seminario tiene un examen presencial se le presenta la opción de notificar que el aprendiz aprobó el examen, en caso de dejar este campo en blanco se intuye que el usuario reprobó dicho examen.
+
+		% 7
+		\item En el caso de que el aprendiz sea reprobado el seminario se marca como reprobado hasta que el usuario confirme otra sesión.
+
+	\end{enumerate}
+
+	Se creo una planilla de estilos CSS distinta para la vista de impresión de la página de la lista de aprendices de una sesión y que esta pudiera guardarse como un PDF. 
+
+	
+	% section calificación_de_las_sesiones (end)
 
 
 
