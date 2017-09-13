@@ -22,13 +22,13 @@ Al integrar las nuevas funcionalidades en el SGA de Bibliomed el pasante se dio 
 
 Bibliomed al soportar el lenguaje ruso usa la mejor opción UTF-8. Pero mantener este esquema significaría que los próximos sistemas vendidos por FKC también podrían luego necesitar la migración a UTF-8 para soportar otros lenguajes. El equipo decidió entonces asignar la tarea al pasante de migrar el sistema al soporte de caracteres UTF-8 en su versión básica.
 
-Para lograr esto debían guardarse todos los archivos con el nuevo formato que previamente estaban guardados en el formato ISO y cambiar la etiqueta HTML que especifica el \emph{charset} en todos los archivos del sistema. Se utilizaron expresiones regulares dentro del editor de texto para modificar este parámetro satisfactoriamente.
+Para lograr esto debían guardarse todos los archivos con el nuevo formato que previamente estaban guardados en el formato ISO y cambiar la etiqueta \gls{HTML} que especifica el \emph{charset} en todos los archivos del sistema. Se utilizaron expresiones regulares dentro del editor de texto para modificar este parámetro satisfactoriamente.
 
 Los otros desarrolladores realizaron las pruebas pertinentes para comprobar el resultado de la operación.
 
 \item Implantación del SGA de FKC
 
-El proceso de implantación del sistema consistió en modificar las tablas en el servidor objetivo y enviar los archivos a través de FTP. Este era un proceso totalmente manual.
+El proceso de implantación del sistema consistió en modificar las tablas en el servidor objetivo y enviar los archivos a través de \gls{FTP}. Este era un proceso totalmente manual.
 
 Para FKC debió hacerse en dos servidores distintos, uno para la filial en Munich y el otro para producción.
 
