@@ -15,11 +15,13 @@
 \usepackage[spanish]{babel} %Lenguaje Español
 \usepackage[utf8]{inputenc} %Paquete para escribir acentos y otros símbolos directamente
 
+\usepackage{csquotes}
+
 \usepackage[acronym]{glossaries}
 \loadglsentries[main]{abreviaturas}
 \makeglossaries
 
-\usepackage{biblatex}
+\usepackage[backend=bibtex]{biblatex}
 \addbibresource{Bibliografia.bib}
 
 \usepackage[toc,page]{appendix}
@@ -98,7 +100,7 @@
 		\include{capitulos/3}
 		
 		\glsresetall
-		\include{capitulos/4}
+		\include{capitulos/4}bi
 		
 		\glsresetall
 		\include{capitulos/Funcionalidades}
@@ -112,6 +114,7 @@
 		\glsresetall
 		\include{Conclusiones}
 
+		\nocite{*}
 		\printbibliography
 		
 		\appendix
