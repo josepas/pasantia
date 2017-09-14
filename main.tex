@@ -24,6 +24,11 @@
 \usepackage[backend=bibtex]{biblatex}
 \addbibresource{Bibliografia.bib}
 
+\defbibheading{bibliography}[\MakeUppercase{\refname}\normalfont\large\bfseries\centering]{%
+  \section*{#1}%
+  \markboth{}{}
+}
+
 \usepackage[toc,page]{appendix}
 
 % for development %
@@ -114,8 +119,8 @@
 		\glsresetall
 		\include{Conclusiones}
 
-		\nocite{*}
 		\printbibliography
+		\pagestyle{myheadings}
 		
 		\appendix
 		\include{Apendices}

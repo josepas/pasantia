@@ -25,9 +25,9 @@ A continuación, se expone una división de los retos más importantes y como fu
 	\section{Módulo Cursos del tipo Seminario} % (fold)
 	\label{sec:cursos_del_tipo_seminario}
 	
-	Luego de examinar las tablas y entender el funcionamiento de los cursos y como son asignados a los grupos (Anexo \ref{fig:baseDeDatosPrevia}) se decidió extender esta tabla como una generalización.
+	Luego de examinar las tablas y entender el funcionamiento de los cursos y como son asignados a los grupos (Anexo \ref{fig:baseDeDatosPrevia}) se decidió extender la tabla de curso como una generalización.
 
-	El sistema solo daba soporte a cursos del tipo multimedia dentro del mismo sistema, que podían ser de autoría del cliente o externos. Estos dos tipos eran manejados con un booleano ``cursoDeAutoria'' decisión de diseño que no daba espacio para la expansión de más tipos de cursos. El pasante sugirió agregar un campo ``tipo'' a la tabla de Curso asignándole el entero \emph{2} al tipo de curso seminario. dejando los enteros \emph{0} y \emph{1} a los anteriores tipos de cursos. La migración de los tipos anteriores para ser representados con el nuevo campo ``tipo'' fue sugerida pero los demás desarrolladores rechazaron la propuesta por provocar cambios en otras funcionalidades del sistema. el estado final de la base de datos se demuestra en el anexo \ref{fig:baseDeDatosFinal}.
+	El sistema slo daba soporte a cursos del tipo multimedia dentro del mismo sistema, que podían ser de autoría del cliente o externos. Estos dos tipos eran manejados con un booleano ``cursoDeAutoria'' decisión de diseño que no daba espacio para la expansión de más tipos de cursos. El pasante sugirió agregar un campo ``tipo'' a la tabla de Curso asignándole el entero \emph{2} al tipo de curso seminario. dejando los enteros \emph{0} y \emph{1} a los anteriores tipos de cursos. La migración de los tipos anteriores para ser representados con el nuevo campo ``tipo'' fue sugerida pero los demás desarrolladores rechazaron la propuesta por provocar cambios en otras funcionalidades del sistema. el estado final de la base de datos se demuestra en el anexo \ref{fig:baseDeDatosFinal}.
 
 	Una vez diferenciado el nuevo tipo curso de los demás en la aplicación se procedió a dar soporte a las actividades \gls{CRUD} para los seminarios. para esto se reutilizó la sección del sistema usada para la creación de cursos. Agregando la opción \emph{seminario} a las opciones previas en la creación de un curso y cambiando la estructura de la forma \gls{HTML} usando Javascript, así como los datos enviados mediante el método POST y su respectiva validación en el servidor para el soporte de los seminarios. La vista se incluyó en el anexo \ref{fig:creacionSeminario}.
 
@@ -51,11 +51,11 @@ A continuación, se expone una división de los retos más importantes y como fu
 	\section{Usuario instructor} % (fold)
 	\label{sec:usuario_instructor}
 	
-	Para el manejo de la puntuación de las sesiones y el manejo de la asistencia se decidió crear un nuevo tipo de usuario en el sistema que pudiera apoyar al administrador en estas tareas. el usuario administrador tiene acceso a todas las funciones de un instructor en todos los cursos del sistema, mientras que el usuario solo tiene acceso a las sesiones en la que él mismo es él instructor.
+	Para el manejo de la puntuación de las sesiones y el manejo de la asistencia se decidió crear un nuevo tipo de usuario en el sistema que pudiera apoyar al administrador en estas tareas. el usuario administrador tiene acceso a todas las funciones de un instructor en todos los cursos del sistema, mientras que el usuario solo tiene acceso a las sesiones en la que él mismo es el instructor.
 
 	Para esto se debió modificar el módulo de \emph{login} para agregar la autentificación del nuevo usuario, que primero confirma si el usuario tiene una jerarquía más alta que la de instructor (un usuario de más rango que contenga sus funciones), en caso contrario, verifica si el usuario que intenta ingresar es instructor de algún curso.
 
-	El manejo de la autorización es realizado de forma manual, así que solo se debió poblar una estructura del tipo diccionario con las funcionalidades que se consideraran necesarias para el usuario instructor. En este caso, administrar los cursos de los que es instructor, funcionalidad desarrollada en el \emph{sprint} cinco.
+	El manejo de la autorización es realizado de forma manual, así que solo se debió poblar una estructura del tipo diccionario con las funcionalidades que se consideraran necesarias para el usuario instructor. En este caso, administrar los cursos de los que es instructor.
 	
 	% section usuario_instructor (end)
 
@@ -70,7 +70,7 @@ A continuación, se expone una división de los retos más importantes y como fu
 
 	Una sesión además es dictada/supervisada por un instructor por lo que se modelo como una relación 1 a muchos análoga a las demás.
 
-	La última relación es la más interesante, las sesiones se relacionan directamente con los usuarios que asisten a ella (aprendices) y cada uno debe tener un espacio en la base de datos para modelar el resultado que este obtuvo en la misma. es una segunda relación de la tabla sesiones con la tabla Usuario que en este caso es muchos a muchos pues un usuario puede participar en cualquier número de sesiones que le hayan sido asignadas, mientras que a una sesión concurren la cantidad de usuarios que su capacidad permita. Se modelo con una tabla auxiliar que posee las dos foráneas y toda la información que la relación \emph{sesión-usuario} necesitó al momento del desarrollo y la que pueda necesitar en el futuro, haciendo el diseño flexible, una de las metas del proyecto.
+	La última relación es la más interesante, las sesiones se relacionan directamente con los usuarios que asisten a ella (aprendices) y cada uno debe tener un espacio en la base de datos para modelar el resultado que este obtuvo en la misma. Es una segunda relación de la tabla sesiones con la tabla Usuario que en este caso es muchos a muchos pues un usuario puede participar en cualquier número de sesiones que le hayan sido asignadas, mientras que a una sesión concurren la cantidad de usuarios que su capacidad permita. Se modelo con una tabla auxiliar que posee las dos foráneas y toda la información que la relación \emph{sesión-usuario} necesitó al momento del desarrollo y la que pueda necesitar en el futuro, haciendo el diseño flexible, una de las metas del proyecto.
 
 	Se procedió a integrar el módulo con las ubicaciones. Para poder crear una sesión debía estar creada en primer lugar una ubicación, por lo tanto, se integró una entrada al módulo de ubicaciones desde el \gls{CRUD} de la sesión que mantuviera en forma de \emph{cookie} cual sesión estaba siendo modificada para volver a ella. La capacidad de la sesión no podrá ser mayor a la capacidad de la locación seleccionada.
 
@@ -83,6 +83,8 @@ A continuación, se expone una división de los retos más importantes y como fu
 	Las sesiones tienen un campo ``activa'' para que puedan ser desactivadas en caso de cualquier eventualidad manteniendo los datos de la sesión para poder así ser reusados.
 
 	Las fechas de inicio y final de una sesión no pueden ser cambiadas si ya poseen usuarios confirmados, por lo que primero tendrían que ser eliminados y notificados de la misma para poder realizar los cambios.
+
+	El estado de un usuario con respecto a una sesión se modela en la tabla auxiliar Sesión-Usuario que puede apreciarse en el anexo \ref{fig:baseDeDatosFinal}. Donde además pueden agregarse más datos que describan esta relación dependiendo de necesidades futuras.
 
 	El borrado de una sesión se puede realizar desde el listado de las sesiones en el administrador como se muestra en las opciones del anexo \ref{fig:listarSesiones}. El usuario instructor no puede borrar la sesión, solo desactivarla.
 
@@ -104,7 +106,7 @@ A continuación, se expone una división de los retos más importantes y como fu
 
 	El pasante acudió al equipo de diseñadores gráficos para la realización de todos los iconos necesarios que mostraran el estado de un seminario, reservado, no reservado, sin sesiones disponibles como se muestra en el anexo \ref{fig:aprendizListarCursos}.
 
-	Para el listado de las sesiones se hizo una consulta que buscaba en la base de datos las sesiones que estaban asignadas a los grupos a los que pertenecía el usuario y en cada caso también recolectaba las sesiones confirmadas del usuario para mostrar más información (anexo \ref{fig:usuarioSesionConfirmada}). Al finalizar el siguiente sprint donde se desarrolló la calificación de la sesión también se consultó por las sesiones aprobadas del usuario para no mostrar las sesiones disponibles.
+	Para el listado de las sesiones se hizo una consulta que buscaba en la base de datos las sesiones que estaban asignadas a los grupos a los que pertenecía el usuario y en cada caso también recolectaba las sesiones confirmadas del usuario para mostrar más información (anexo \ref{fig:usuarioSesionConfirmada}). Más adelante se desarrolló la calificación de la sesión y se consultó por las sesiones aprobadas del usuario para no mostrar las demás sesiones disponibles.
 
 	Se crearon dos \emph{endpoints} para la confirmación y cancelación de las sesiones que se acceden mediante el ultimo botón en el listado de la sesión. si no hay una sesión confirmada por el usuario es posible confirmar cualquiera de ellas. Al poseer una sesión confirmada el usuario solo tiene la opción de cancelar la sesión confirmada actual y se hace el chequeo en el \emph{endpoint} de que la cancelación sea posible dados los datos de la sesión al igual que en la confirmación.
 
@@ -204,7 +206,7 @@ A continuación, se expone una división de los retos más importantes y como fu
 
 	Se agrego también el campo ``modo\_aprobacion'' para representar los modos de aprobación descritos anteriormente.
 
-	El resto del esquema termina siendo el mismo que en el SGA base de FKC. uno de los objetivos de la integración fue alejarse lo menos posible del sistema base para facilitar la mantenibilidad. Por lo que los procesos de integración fueron realizados, pero no se nombrar por ser los mismos explicados en los sprints anteriores.
+	El resto del esquema termina siendo el mismo que en el SGA base de FKC. uno de los objetivos de la integración fue alejarse lo menos posible del sistema base para facilitar la mantenibilidad. Por lo que los procesos de integración fueron realizados, pero son análogos a los anteriormente descritos.
 
 	En el SGA de Bibliomed la creación de un curso del tipo seminario paso a ser la asignación de un seminario a un módulo. Como los seminarios solo pueden existir asignados a un módulo, la asignación se hace desde la vista de edición del módulo como se demuestra en el anexo \ref{fig:creacionSeminarioBibliomed} en contraste con la creación de curso del tipo seminario del anexo \ref{fig:creacionSeminario}.
 
