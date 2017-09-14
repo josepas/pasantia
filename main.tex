@@ -24,10 +24,13 @@
 \usepackage[backend=bibtex]{biblatex}
 \addbibresource{Bibliografia.bib}
 
+\appto{\bibsetup}{\raggedright}
+
 \defbibheading{bibliography}[\MakeUppercase{\refname}\normalfont\large\bfseries\centering]{%
   \section*{#1}%
   \markboth{}{}
 }
+
 
 \usepackage[toc,page]{appendix}
 
@@ -105,7 +108,7 @@
 		\include{capitulos/3}
 		
 		\glsresetall
-		\include{capitulos/4}bi
+		\include{capitulos/4}
 		
 		\glsresetall
 		\include{capitulos/Funcionalidades}
