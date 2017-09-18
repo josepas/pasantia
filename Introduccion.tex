@@ -1,23 +1,36 @@
 \chapter*{Introducción}
 \thispagestyle{empty} % Quitar el número
 \addcontentsline{toc}{chapter}{Introducción} \markboth{INTRODUCCIÓN}{}
-El presente documento describe el proceso de desarrollo del módulo de encuentros presenciales para un \gls{SGA} para \gls{FKC} como proyecto de pasantías realizado por su autor.
+El presente documento describe el proceso de desarrollo del módulo de encuentros presenciales para un \gls{SGA} para \gls{FKC} como proyecto de pasantías realizado por su autor. La compañia posee un sistema base que se personaliza y despliega según las necesidades de sus clientes.
+
+El módulo permite a los administradores del sistema la creación de seminarios a los que le son asignados instructores y locaciones que definen el encuentro presencial. La gestión de las locaciones también debió ser desarrollado por el pasante.
+
+Una vez definido un encuentro presencial, los usuarios que participan como aprendices en el sistema pueden inscribirse en estos eventos para luego ser evaluados en el dominio del material.
+
+El pasante debió además integrar este desarrollo en el sistema de gestión de aprendizaje de uno de los clientes que previamente eran poseedores del producto de FKC, Bibliomed.
 
 \section*{Antecedentes}
 \addcontentsline{toc}{section}{Antecedentes}
 El \gls{SGA} básico de \gls{FKC} es un producto que soporta las funciones básicas de cualquier sistema de gestión aprendizaje simple. Como lo son: manejo de usuarios y contenidos; seguimiento del proceso de aprendizaje, evaluaciones y herramientas de comunicación como foros y mensajes privados. Este sistema es personalizado e instalado generalmente en la infraestructura del cliente según sus necesidades.
 
-\section*{Justificación e importancia}
-\addcontentsline{toc}{section}{Justificación e importancia}
-Entre las funciones convencionales de los \gls{SGA} actuales se encuentra el manejo de encuentros presenciales, funcionalidad considerada como necesaria por actuales y potenciales clientes. Siendo estos encuentros de importancia crítica para el flujo del conocimiento de mediana a alta complejidad que no puede ser expresado fácilmente por medio de cursos en línea. Por lo tanto, es de interés para la compañía poseer esta funcionalidad en su sistema.
-
-
 \section*{Planteamiento del problema}
 \addcontentsline{toc}{section}{Planteamiento del problema}
-Se identificó la necesidad de extender el sistema de \gls{FKC} con un módulo que le permita a sus clientes gestionar encuentros presenciales entre instructores y estudiantes. Al mismo tiempo este módulo debía adaptarse a la estructura de cursos y grupos previamente existente en el sistema, tratando de incluir la menor complejidad posible para su futura extensión y personalización.
+
+Un sistema de gestión de aprendizaje se mantiene en constante actualización. A medida que las técnicas de enseñanza cambian, el sistema debe modificarse para dar el soporte necesario a las nuevas tendencias.
+
+Al pasante entonces se le asignó la realización de un módulo que permita la gestión de seminarios presenciales en el sistema base que ofrece \gls{FKC}.
+
+El \gls{SGA} de \gls{FKC} no posee soporte para la organización de eventos presenciales en los que participen alumnos e instructores. Esta forma de enseñanza es útil para la transmisión de conocimientos que no son fáciles de explicar a través de material multimedia.
+
+Esta es una funcionalidad altamente requerida por los clientes de la compañía que permite al producto de FKC ser mas completo sobre todo al ser comparado con los sistemas de la competencia.
+
+De lo expuesto anteriormente se identificó la necesidad de extender el sistema de \gls{FKC} con un módulo que le permita a sus clientes gestionar encuentros presenciales entre instructores y estudiantes. Al mismo tiempo este módulo debía adaptarse a la estructura de cursos y grupos previamente existente en el sistema, tratando de incluir la menor complejidad posible para su futura extensión y personalización.
 
 Para lograr esto, es necesario un profundo entendimiento del producto, con el fin de desarrollar un módulo que mantenga el mismo estilo tanto en la programación, como en el funcionamiento y la interfaz. 
 
+\section*{Justificación e importancia}
+\addcontentsline{toc}{section}{Justificación e importancia}
+Entre las funciones convencionales de los \gls{SGA} actuales se encuentra el manejo de encuentros presenciales, funcionalidad considerada como necesaria por actuales y potenciales clientes. Siendo estos encuentros de importancia crítica para el flujo del conocimiento de mediana a alta complejidad que no puede ser expresado fácilmente por medio de cursos en línea. Por lo tanto, es de interés para la compañía poseer esta funcionalidad en su sistema.
 
 \section*{Objetivos}
 \addcontentsline{toc}{section}{Objetivos}
@@ -36,8 +49,8 @@ El objetivo general de este proyecto es desarrollar un módulo que permita exten
 	\item Extender la base de datos para el soporte del módulo.
 	\item Integrar el nuevo tipo de curso a las funcionalidades previas de administrador sobre otros tipos de cursos, como estadísticas y asignación a grupos.
 	\item Crear un nuevo tipo de usuario, instructor, que tenga potestad sobre los seminarios.
-	\item Integrar el nuevo tipo de curso en la interfaz del estudiante del sistema.
-	\item Integrar el módulo tanto en el sistema base de \gls{FKC} como en Bibliomed, uno de los clientes que posee un \gls{SGA}.
+	\item Diseñar y desarrollar las interfaces necesarias para gestionar el nuevo módulo.
+	\item Integrar el módulo tanto en el sistema base de \gls{FKC} como en el sistema vendido previamente a Bibliomed, uno de los clientes que posee un \gls{SGA}.
 \end{itemize}
 
 
