@@ -1,9 +1,9 @@
 \chapter{Solución del problema}
 \thispagestyle{empty} % Quitar el número
 
-En este capítulo se expresan las técnicas utilizadas por el pasante para el cumplimiento de las funcionalidades expresadas en el capítulo anterior.
+En este capítulo se expresan las técnicas utilizadas para el cumplimiento de las funcionalidades expresadas en el capítulo anterior.
 
-El lenguaje de programación usado como base para el \gls{SGA} de \gls{FKC} es \gls{PHP}. La mayor parte del código escrito por el pasante para la solución es por lo tanto escrita en este lenguaje.
+El lenguaje de programación usado como base para el \gls{SGA} de \gls{FKC} es \gls{PHP}.
 
 El trabajo se dividió en módulos. Se analizaron sus dependencias con el fin de crear un plan de trabajo organizado, que permitiera además la entrega constante de \emph{software} funcional, apegándose al marco de trabajo iterativo.
 
@@ -12,13 +12,13 @@ A continuación, se expone una división de los retos más importantes y como fu
 	\section{Módulo ubicaciones} % (fold)
 	\label{sec:ubicaciones}
 	
-	Para soportar esta funcionalidad en la base de datos se creó una tabla llamada ubicación con los datos que parecieron relevantes para el cliente, ilustrada en el anexo \ref{fig:baseDeDatosFinal}. Dicha ubicación estaría relacionada con las sesiones, pudiendo una ubicación alojar distintas sesiones. El SGA permite mantener distintos clientes para dar soporte de grandes compañías con filiales, por lo que las ubicaciones se construyen aisladas del grueso de la funcionalidad (los seminarios) para poder ser usadas luego en funcionalidades futuras o integrada en sistemas de los clientes activos de SGAs de \gls{FKC}. Tienen una relación directa con la tabla cliente a través de una llave foránea. Para la clave primaria se usó un identificador creciente autogenerado.
+	Para soportar esta funcionalidad en la base de datos, se creó una tabla llamada ubicación con los datos que parecieron relevantes para el cliente, ilustrada en el Anexo \ref{fig:baseDeDatosFinal}. Dicha ubicación estaría relacionada con las sesiones, pudiendo una ubicación alojar distintas sesiones. El SGA permite mantener distintos clientes para dar soporte de grandes compañías con filiales, por lo que las ubicaciones se construyen aisladas del grueso de la funcionalidad (los seminarios) para poder ser usadas luego en funcionalidades futuras o integrada en sistemas de los clientes activos de SGAs de \gls{FKC}. Tienen una relación directa con la tabla cliente a través de una llave foránea. Para la clave primaria se usó un identificador creciente autogenerado.
 
 	Se acordó que el manejo de las ubicaciones se llevara a cabo en el área de administración de la aplicación, por el usuario administrador. Se agrego una nueva entrada de manejo de ubicaciones en la interfaz del administrador con este fin.
 
 	Se logró conseguir un producto gratis de esta aplicación que permitiera mostrar ubicaciones marcadas en un mapa generado por Google enganchado a un iframe en el sistema, con tan solo especificar medidas latitud y longitud, que tuvieron que ser agregadas luego a la tabla ubicación.
 
-	Para integrar la visualización de mapas usando la aplicación Google maps de manera gratuita para la empresa, el usuario debía ingresar los valores de latitud y longitud de la ubicación deseada. Para esto el pasante ofreció como solución analizar gramaticalmente la \gls{URL} mostrada en la aplicación web google maps por medio de expresiones regulares para extraer los valores necesarios, facilitando así al usuario el proceso de agregar una ubicación sin que la empresa tuviera que usar las funcionalidades pagas de google.
+	Para integrar la visualización de mapas usando la aplicación Google maps de manera gratuita para la empresa, el usuario debía ingresar los valores de latitud y longitud de la ubicación deseada. Para esto se ofreció como solución analizar gramaticalmente la \gls{URL} mostrada en la aplicación web google maps por medio de expresiones regulares para extraer los valores necesarios, facilitando así al usuario el proceso de agregar una ubicación sin que la empresa tuviera que usar las funcionalidades pagas de google.
 
 	% section ubicaciones (end)
 
@@ -27,9 +27,9 @@ A continuación, se expone una división de los retos más importantes y como fu
 	
 	Luego de examinar las tablas y entender el funcionamiento de los cursos y como son asignados a los grupos (Anexo \ref{fig:baseDeDatosPrevia}) se decidió extender la tabla de curso como una generalización.
 
-	El sistema slo daba soporte a cursos del tipo multimedia dentro del mismo sistema, que podían ser de autoría del cliente o externos. Estos dos tipos eran manejados con un booleano ``cursoDeAutoria'' decisión de diseño que no daba espacio para la expansión de más tipos de cursos. El pasante sugirió agregar un campo ``tipo'' a la tabla de Curso asignándole el entero \emph{2} al tipo de curso seminario. dejando los enteros \emph{0} y \emph{1} a los anteriores tipos de cursos. La migración de los tipos anteriores para ser representados con el nuevo campo ``tipo'' fue sugerida pero los demás desarrolladores rechazaron la propuesta por provocar cambios en otras funcionalidades del sistema. el estado final de la base de datos se demuestra en el anexo \ref{fig:baseDeDatosFinal}.
+	El sistema slo daba soporte a cursos del tipo multimedia dentro del mismo sistema, que podían ser de autoría del cliente o externos. Estos dos tipos eran manejados con un booleano ``cursoDeAutoria'' decisión de diseño que no daba espacio para la expansión de más tipos de cursos. Se sugirió agregar un campo ``tipo'' a la tabla de Curso asignándole el entero \emph{2} al tipo de curso seminario. dejando los enteros \emph{0} y \emph{1} a los anteriores tipos de cursos. La migración de los tipos anteriores para ser representados con el nuevo campo ``tipo'' fue sugerida pero los demás desarrolladores rechazaron la propuesta por provocar cambios en otras funcionalidades del sistema. el estado final de la base de datos se demuestra en el Anexo \ref{fig:baseDeDatosFinal}.
 
-	Una vez diferenciado el nuevo tipo curso de los demás en la aplicación se procedió a dar soporte a las actividades \gls{CRUD} para los seminarios. para esto se reutilizó la sección del sistema usada para la creación de cursos. Agregando la opción \emph{seminario} a las opciones previas en la creación de un curso y cambiando la estructura de la forma \gls{HTML} usando Javascript, así como los datos enviados mediante el método POST y su respectiva validación en el servidor para el soporte de los seminarios. La vista se incluyó en el anexo \ref{fig:creacionSeminario}.
+	Una vez diferenciado el nuevo tipo curso de los demás en la aplicación se procedió a dar soporte a las actividades \gls{CRUD} para los seminarios. para esto se reutilizó la sección del sistema usada para la creación de cursos. Agregando la opción \emph{seminario} a las opciones previas en la creación de un curso y cambiando la estructura de la forma \gls{HTML} usando Javascript, así como los datos enviados mediante el método POST y su respectiva validación en el servidor para el soporte de los seminarios. La vista se incluyó en el Anexo \ref{fig:creacionSeminario}.
 
 	Una de las diferencias de los seminarios con los cursos multimedia es la forma en la que son aprobados, se decidió que podían existir dos tipos:
 
@@ -40,9 +40,9 @@ A continuación, se expone una división de los retos más importantes y como fu
 
 	Para el soporte de estos dos tipos se agregó un campo ``con\_examen'' que permite la representación.
 
-	El pasante aprovechó los métodos de eliminación, listado y asignación a grupos que el sistema ya poseía, ajustándolos para el funcionamiento con los seminarios. 
+	Se aprovechó de los métodos de eliminación, listado y asignación a grupos que el sistema ya poseía, ajustándolos para el funcionamiento con los seminarios. 
 
-	Para lograr esto debió separar visualmente los distintos tipos de cursos en las vistas de listado, para esto agrego un icono que los diferenciara en la vista de cursos del administrador (anexo \ref{fig:listarCursos}). Además, agregó un filtro persistente en la sesión \gls{HTTP} que permitiera al administrador la visualización de solo cursos del tipo seminario a lo largo de su conexión.
+	Para lograr esto debió separar visualmente los distintos tipos de cursos en las vistas de listado, para esto agrego un icono que los diferenciara en la vista de cursos del administrador (Anexo \ref{fig:listarCursos}). Además, agregó un filtro persistente en la sesión \gls{HTTP} que permitiera al administrador la visualización de solo cursos del tipo seminario a lo largo de su conexión.
 
 	En el método asignación se agregó luego un \emph{preview} con las sesiones disponibles para el seminario visibles en el apéndice \ref{fig:asignarSeminario} además del icono para los seminarios. 
 
@@ -62,7 +62,7 @@ A continuación, se expone una división de los retos más importantes y como fu
 	\section{Sesiones de un seminario} % (fold)
 	\label{sec:sesiones_de_un_seminario}
 	
-	Para soportar la funcionalidad en la base de datos se creó la tabla llamada Sesión que contiene todos los datos relevantes para la descripción de una sesión. Es importante recalcar que las sesiones sólo tienen sentido si forman parte de un curso del tipo seminario, cosa que se evidencia en la relación de agrupación en el modelo final de la base de datos en el anexo \ref{fig:baseDeDatosFinal}. 
+	Para soportar la funcionalidad en la base de datos se creó la tabla llamada Sesión que contiene todos los datos relevantes para la descripción de una sesión. Es importante recalcar que las sesiones sólo tienen sentido si forman parte de un curso del tipo seminario, cosa que se evidencia en la relación de agrupación en el modelo final de la base de datos en el Anexo \ref{fig:baseDeDatosFinal}. 
 
 	Un seminario puede estar compuesto por muchas sesiones, mientras que las sesiones no pueden ser compartidas entre los distintos seminarios, por lo que se representa como una relación 1 a muchos. 
 
@@ -84,13 +84,13 @@ A continuación, se expone una división de los retos más importantes y como fu
 
 	Las fechas de inicio y final de una sesión no pueden ser cambiadas si ya poseen usuarios confirmados, por lo que primero tendrían que ser eliminados y notificados de la misma para poder realizar los cambios.
 
-	El estado de un usuario con respecto a una sesión se modela en la tabla auxiliar Sesión-Usuario que puede apreciarse en el anexo \ref{fig:baseDeDatosFinal}. Donde además pueden agregarse más datos que describan esta relación dependiendo de necesidades futuras.
+	El estado de un usuario con respecto a una sesión se modela en la tabla auxiliar Sesión-Usuario que puede apreciarse en el Anexo \ref{fig:baseDeDatosFinal}. Donde además pueden agregarse más datos que describan esta relación dependiendo de necesidades futuras.
 
-	El borrado de una sesión se puede realizar desde el listado de las sesiones en el administrador como se muestra en las opciones del anexo \ref{fig:listarSesiones}. El usuario instructor no puede borrar la sesión, solo desactivarla.
+	El borrado de una sesión se puede realizar desde el listado de las sesiones en el administrador como se muestra en las opciones del Anexo \ref{fig:listarSesiones}. El usuario instructor no puede borrar la sesión, solo desactivarla.
 
 	Para la visualización se usó un \emph{plug-in} de calendario bootstrap-year-calendar creado usando \emph{bootstrap} y \emph{jquery}. \emph{Plug-in} que permite la representación de los meses en distintos lenguajes, así como la personalización de sus colores, aspectos necesarios para el amplio rango de necesidades de los clientes de FKC.
 
-	Este calendario se llena con \gls{AJAX} a través de un \emph{endpoint} creado para tal fin que devuelve las sesiones activas de la locación como un objeto \gls{JSON} que luego se muestra en los días del calendario como se muestra en el anexo \ref{fig:editarUbicaciones}. las sesiones desactivadas se muestran con un tipo de letra más pequeño y en cursiva para diferenciarlas de las demás.
+	Este calendario se llena con \gls{AJAX} a través de un \emph{endpoint} creado para tal fin que devuelve las sesiones activas de la locación como un objeto \gls{JSON} que luego se muestra en los días del calendario como se muestra en el Anexo \ref{fig:editarUbicaciones}. las sesiones desactivadas se muestran con un tipo de letra más pequeño y en cursiva para diferenciarlas de las demás.
 	% section sesiones_de_un_seminario (end)
 
 	\section{Usuario aprendiz} % (fold)
@@ -98,21 +98,21 @@ A continuación, se expone una división de los retos más importantes y como fu
 	
 	El reto más importante de esta etapa del proyecto fue encontrar donde mostrar las sesiones de los cursos, si crear otra pestaña en el menú del sistema solo para los cursos del tipo seminario o integrar de alguna forma los cursos diferenciándolos de los demás.
 
-	La opción que se tomó fue la segunda. La primera opción agregaba una entrada más a un menú que comenzaba a lucir un poco abarrotado, pero, la segunda opción trajo sus dificultades. Se tuvo que modificar un código escrito de una forma complicada debido al mal uso de la librería de maquetado \emph{Smarty}. La interfaz era una lista rígida de los cursos como se muestra en el anexo \ref{fig:aprendizListarViejo} por lo que se decidió dar una opción para generar una pestaña debajo de cada curso.
+	La opción que se tomó fue la segunda. La primera opción agregaba una entrada más a un menú que comenzaba a lucir un poco abarrotado, pero, la segunda opción trajo sus dificultades. Se tuvo que modificar un código escrito de una forma complicada debido al mal uso de la librería de maquetado \emph{Smarty}. La interfaz era una lista rígida de los cursos como se muestra en el Anexo \ref{fig:aprendizListarViejo} por lo que se decidió dar una opción para generar una pestaña debajo de cada curso.
 
 	Este nuevo espacio generado debajo de los seminarios permitió colocar las sesiones disponibles del usuario, pero termino siendo un poco inconsistente que unos cursos tuvieran la opción de generar pestañas con más información y otros no. Como respuesta a esto los clientes sugirieron que ingresara un nuevo campo a la tabla curso para colocar una imagen que pudiera ser mostrada en todas las pestañas junto con la descripción del curso.
 
 	A simple vista era difícil para el usuario diferenciar los seminarios de los cursos multimedia por lo que se agregó un icono para los seminarios al lado del nombre de cada curso. Una vez visibles los seminarios, se consideró necesario notificar al usuario visualmente que la acción de confirmación de una sesión de seminario era necesaria o que dicha acción ya estaba realizada.
 
-	El pasante acudió al equipo de diseñadores gráficos para la realización de todos los iconos necesarios que mostraran el estado de un seminario, reservado, no reservado, sin sesiones disponibles como se muestra en el anexo \ref{fig:aprendizListarCursos}.
+	Se trabajó en conjunto al equipo de diseñadores gráficos para la realización de todos los iconos necesarios que mostraran el estado de un seminario, reservado, no reservado, sin sesiones disponibles como se muestra en el Anexo \ref{fig:aprendizListarCursos}.
 
-	Para el listado de las sesiones se hizo una consulta que buscaba en la base de datos las sesiones que estaban asignadas a los grupos a los que pertenecía el usuario y en cada caso también recolectaba las sesiones confirmadas del usuario para mostrar más información (anexo \ref{fig:usuarioSesionConfirmada}). Más adelante se desarrolló la calificación de la sesión y se consultó por las sesiones aprobadas del usuario para no mostrar las demás sesiones disponibles.
+	Para el listado de las sesiones se hizo una consulta que buscaba en la base de datos las sesiones que estaban asignadas a los grupos a los que pertenecía el usuario y en cada caso también recolectaba las sesiones confirmadas del usuario para mostrar más información (Anexo \ref{fig:usuarioSesionConfirmada}). Más adelante se desarrolló la calificación de la sesión y se consultó por las sesiones aprobadas del usuario para no mostrar las demás sesiones disponibles.
 
 	Se crearon dos \emph{endpoints} para la confirmación y cancelación de las sesiones que se acceden mediante el ultimo botón en el listado de la sesión. si no hay una sesión confirmada por el usuario es posible confirmar cualquiera de ellas. Al poseer una sesión confirmada el usuario solo tiene la opción de cancelar la sesión confirmada actual y se hace el chequeo en el \emph{endpoint} de que la cancelación sea posible dados los datos de la sesión al igual que en la confirmación.
 
-	Al ser la mayoría de los clientes usuario del servicio de correo \emph{outlook} fue solicitado por los clientes una facilidad para exportar automáticamente al calendario \emph{outlook} del aprendiz. Para lograr esto el pasante investigó sobre la especificación de formatos para la transmisión de eventos a través del protocolo \gls{HTTP} \emph{iCalendar} usado previamente por la empresa. \emph{iCalendar} es soportado por las plataformas más famosas como \emph{google, apple, microsoft outlook} entre otras. Se creo un pequeño módulo que recibida los datos de una sesión del sistema y producía un archivo en formato ics para ser descargado por el usuario y usado en su aplicación de calendario de preferencia. Con esto se pudo cumplir el requerimiento del cliente y más.
+	Al ser la mayoría de los clientes usuario del servicio de correo \emph{outlook} fue solicitado por los clientes una facilidad para exportar automáticamente al calendario \emph{outlook} del aprendiz. Para lograr esto se realizo una investigación sobre la especificación de formatos para la transmisión de eventos a través del protocolo \gls{HTTP} \emph{iCalendar} usado previamente por la empresa. \emph{iCalendar} es soportado por las plataformas más famosas como \emph{google, apple, microsoft outlook} entre otras. Se creo un pequeño módulo que recibida los datos de una sesión del sistema y producía un archivo en formato ics para ser descargado por el usuario y usado en su aplicación de calendario de preferencia. Con esto se pudo cumplir el requerimiento del cliente y más.
 
-	En la revisión continua de las funcionalidades realizadas surgió la necesidad por parte del cliente de enviar mensajes al instructor de una sesión directamente desde el listado de las sesiones disponibles. Para esto el pasante tuvo que conectar el listado de las sesiones disponibles con el módulo de mensajería interna del sistema colocando automáticamente como destinatario el instructor del curso.
+	En la revisión continua de las funcionalidades realizadas surgió la necesidad por parte del cliente de enviar mensajes al instructor de una sesión directamente desde el listado de las sesiones disponibles. Para esto se realizó una conexción del listado de sesiones disponibles con el módulo de mensajería interna del sistema, colocando automáticamente como destinatario al instructor del curso.
 	% section interfaz_para_el_usuario_aprendiz (end)
 
 	\section{Calificación de las sesiones} % (fold)
@@ -120,7 +120,7 @@ A continuación, se expone una división de los retos más importantes y como fu
 	
 	Un usuario solo debe poseer una única entrada en la tabla Sesión-Usuario que lo relacione inequívocamente con una sesión, para esto se utilizó como clave primaria de la tabla la combinación de las foráneas \emph{sesion\_id} y \emph{usuario\_id}. Además, se implementó una excepción para arrojar un error al usuario y notificar al administrador del sistema por medio de una entrada en la bitácora del sistema si este caso llegara a suceder.
 
-	Una vez asegurada la unicidad de la relación usuario cursa una sesión se puede proceder a calificarla. Tanto el administrador como el instructor pueden calificar una sesión. La calificación de la sesión permite al usuario aprendiz cambiar el estado del seminario que se encuentra en la tabla Curso. Para facilitar la explicación se construyó un diagrama de estados que demuestra los posibles cambios (anexo \ref{fig:diagramaEstadosSesion}). 
+	Una vez asegurada la unicidad de la relación usuario cursa una sesión se puede proceder a calificarla. Tanto el administrador como el instructor pueden calificar una sesión. La calificación de la sesión permite al usuario aprendiz cambiar el estado del seminario que se encuentra en la tabla Curso. Para facilitar la explicación se construyó un diagrama de estados que demuestra los posibles cambios (Anexo \ref{fig:diagramaEstadosSesion}). 
 
 	Para la calificación se construyeron dos \emph{endpoints} uno para la modificación de la asistencia y otro que soporta la modificación del estado aprobado/reprobado. que solo pueden ser alcanzados si la fecha de inicio de la sesión ha sido alcanzada.
 
@@ -128,10 +128,10 @@ A continuación, se expone una división de los retos más importantes y como fu
 
 	\begin{enumerate}
 		% 1
-		\item Un administrador asigna un seminario a un grupo compuesto por una cantidad de usuarios (anexo \ref{fig:asignarSeminario}). 
+		\item Un administrador asigna un seminario a un grupo compuesto por una cantidad de usuarios (Anexo \ref{fig:asignarSeminario}). 
 		
 		% 2
-		\item Una vez asignado el seminario, todas las sesiones que lo componen son asignadas como posibles para los usuarios del grupo a través de la interfaz de listar cursos del anexo \ref{fig:aprendizListarCursos}.
+		\item Una vez asignado el seminario, todas las sesiones que lo componen son asignadas como posibles para los usuarios del grupo a través de la interfaz de listar cursos del Anexo \ref{fig:aprendizListarCursos}.
 
 		% 3 
 		\item El usuario puede confirmar cualquier sesión que no esté llena.
@@ -140,7 +140,7 @@ A continuación, se expone una división de los retos más importantes y como fu
 		\item Con una sesión confirmada el usuario puede cancelarla y volver al punto 1 para elegir una sesión distinta.
 
 		% 5
-		\item El usuario que confirmó una sesión asiste a ella. El instructor por lo tanto puede marcar la asistencia en la interfaz construida para ello que se muestra en el anexo \ref{fig:gestionarSesion}. Si el seminario no posee examen final, la sesión y por lo tanto el seminario, son aprobados.
+		\item El usuario que confirmó una sesión asiste a ella. El instructor por lo tanto puede marcar la asistencia en la interfaz construida para ello que se muestra en el Anexo \ref{fig:gestionarSesion}. Si el seminario no posee examen final, la sesión y por lo tanto el seminario, son aprobados.
 
 		% 6
 		\item Si el seminario tiene un examen presencial se le presenta la opción de notificar que el aprendiz aprobó el examen, en caso de dejar este campo en blanco se intuye que el usuario reprobó dicho examen.
@@ -157,11 +157,11 @@ A continuación, se expone una división de los retos más importantes y como fu
 	\section{Sesiones de tipo \emph{online} para los seminarios} % (fold)
 	\label{sec:sesiones_de_seminario_tipo_}
 
-	Añadir sesiones en línea fue un proceso parecido al de agregar los seminarios a los cursos. Se especificaron los datos que diferenciaban a las sesiones en línea de las ya existentes y se decidió por lo tanto crear una especialización de la tabla Sesión en física y ``en línea'' (anexo \ref{fig:baseDeDatosFinal}).
+	Añadir sesiones en línea fue un proceso parecido al de agregar los seminarios a los cursos. Se especificaron los datos que diferenciaban a las sesiones en línea de las ya existentes y se decidió por lo tanto crear una especialización de la tabla Sesión en física y ``en línea'' (Anexo \ref{fig:baseDeDatosFinal}).
 
 	Se ingresó un campo tipo a la tabla Sesión para diferenciarlas. el entero cero representa las sesiones físicas y el uno se refiere a las en línea.
 
-	Para crear una sesión online se agregó una opción de tipo en la creación de las sesiones (anexo \ref{fig:creacionSesion}) al igual que con los cursos.
+	Para crear una sesión online se agregó una opción de tipo en la creación de las sesiones (Anexo \ref{fig:creacionSesion}) al igual que con los cursos.
 
 	Este tipo de sesiones debían ser mostradas de forma distinta en las vistas que involucraran las sesiones ya que estas cuentan con datos distintos. por lo que se modificó la visualización del antiguo modal del aprendiz para la ubicación. En el caso de una sesión física se seguiría mostrando el mismo modal y en caso contrario se mostraría el modal con los datos referentes a la sesión en línea solo en el caso en que el usuario haya confirmado dicha sesión.
 
@@ -172,19 +172,19 @@ A continuación, se expone una división de los retos más importantes y como fu
 	\section{Notificaciones} % (fold)
 	\label{sec:notificaciones}
 	
-	Las notificaciones en el sistema generalmente son hechas a través de correos, el pasante decidió mantener esta práctica. Se utilizó para este propósito la librería \emph{swift mailer}.
+	Las notificaciones en el sistema generalmente son hechas a través de correos, se decidió mantener esta práctica. Se utilizó para este propósito la librería \emph{swift mailer}.
 
 	El proceso de agregar las notificaciones paso por crear una función de envoltura a la librerías de \emph{swift mailer} que recibiera los datos básicos necesarios para enviar un correo como: encabezado, mensaje y destinatarios dentro de un arreglo.
 
 	El resto fue ubicar los envíos de correos en los sitios adecuados, llenando los datos correctos según fuera el caso.
 
-	Al comenzar a probar el sistema, los clientes se dieron cuenta que las notificaciones podían llegar a ser demasiadas en cursos compuestos por muchos estudiantes, por lo que luego se desarrolló una opción para desactivar los correos recibidos por el instructor de una sesión. como ejemplo se muestra uno de los correos enviados por la aplicación en el anexo \ref{fig:correos}.
+	Al comenzar a probar el sistema, los clientes se dieron cuenta que las notificaciones podían llegar a ser demasiadas en cursos compuestos por muchos estudiantes, por lo que luego se desarrolló una opción para desactivar los correos recibidos por el instructor de una sesión. como ejemplo se muestra uno de los correos enviados por la aplicación en el Anexo \ref{fig:correos}.
 	% section notificaciones (end)
 
 	\section{Estadísticas} % (fold)
 	\label{sec:estadisticas}
 	
-	El pasante debió modificar algunas consultas en las estadísticas para que estas pudieran reflejar los resultados de los seminarios. generalmente suavizando condiciones de los \emph{joins}. Se diferenciaron los seminarios con el uso de un icono distintivo.
+	Se debió modificar algunas consultas en las estadísticas para que estas pudieran reflejar los resultados de los seminarios. generalmente suavizando condiciones de los \emph{joins}. Se diferenciaron los seminarios con el uso de un icono distintivo.
 
 	Además, algunos datos en la tabla de visualización de las estadísticas no concordaban con los datos referentes a los seminarios. Estos datos se omitieron como: momento de inicio, momento de terminación, tiempo de aprendizaje que más adecuados y fácilmente medibles en los cursos web.
 	% section estadísticas (end)
@@ -208,11 +208,11 @@ A continuación, se expone una división de los retos más importantes y como fu
 
 	El resto del esquema termina siendo el mismo que en el SGA base de FKC. uno de los objetivos de la integración fue alejarse lo menos posible del sistema base para facilitar la mantenibilidad. Por lo que los procesos de integración fueron realizados, pero son análogos a los anteriormente descritos.
 
-	En el SGA de Bibliomed la creación de un curso del tipo seminario paso a ser la asignación de un seminario a un módulo. Como los seminarios solo pueden existir asignados a un módulo, la asignación se hace desde la vista de edición del módulo como se demuestra en el anexo \ref{fig:creacionSeminarioBibliomed} en contraste con la creación de curso del tipo seminario del anexo \ref{fig:creacionSeminario}.
+	En el SGA de Bibliomed la creación de un curso del tipo seminario paso a ser la asignación de un seminario a un módulo. Como los seminarios solo pueden existir asignados a un módulo, la asignación se hace desde la vista de edición del módulo como se demuestra en el Anexo \ref{fig:creacionSeminarioBibliomed} en contraste con la creación de curso del tipo seminario del Anexo \ref{fig:creacionSeminario}.
 
 	Al realizarse desde la vista de actualización del módulo se asegura que el seminario exista solo en ese módulo, ya que no puede elegirse un seminario previamente creado.
 
-	El pasante debió además hacer una integración de las sesiones confirmadas por el usuario con un módulo de calendario para el usuario implementado en el SGA de Bibliomed. Agregó a las consultas previas que llenaban el calendario una consulta que ofreciera las consultas confirmadas y atendidas por el usuario de manera que se mostraran en su calendario personal. Cuidando mantener la misma estructura de los eventos para su correcta presentación.
+	Se integraron las sesiones confirmadas por el usuario con un módulo de calendario para el usuario implementado en el SGA de Bibliomed. Agregó a las consultas previas que llenaban el calendario una consulta que ofreciera las consultas confirmadas y atendidas por el usuario de manera que se mostraran en su calendario personal. Cuidando mantener la misma estructura de los eventos para su correcta presentación.
 
 
 
