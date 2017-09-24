@@ -16,15 +16,15 @@
 \begin{itemize}
 \item Familiarización con las herramientas
 
-El pasante no poseía experiencia previa con el lenguaje de programación usado en la empresa, PHP, por lo que se acordó la exploración de referencias sobre el funcionamiento y el correcto uso de dicho lenguaje.
+No se poseía de experiencia previa con el lenguaje de programación usado en la empresa, PHP, por lo que se acordó la exploración de referencias sobre el funcionamiento y el correcto uso de dicho lenguaje.
 
 Se usaron distintos recursos tanto literarios como web, mayormente la página web que contiene la documentación oficial del lenguaje como referencia. \cite{bib:php}
 
 \item Análisis a fondo el funcionamiento del SGA
 
-Para esto el pasante tuvo que instalar las herramientas comunes de desarrollo en inglés, puesto que recibió un ambiente completamente en alemán. Entre estos: sistema operativo, manejador de las distintas bases de datos Microsoft SQL y Microsoft Access, y el navegador.
+Para esto se instalaron las herramientas comunes de desarrollo en inglés, puesto que recibió un ambiente completamente en alemán. Entre estos: sistema operativo, manejador de las distintas bases de datos Microsoft SQL y Microsoft Access, y el navegador.
 
-Una vez instalado el ambiente de desarrollo adecuado el pasante procedió a explorar el sistema. Rápidamente se dio cuenta que el código fuente escrito estaba muy dglsesorganizado. Código alto acoplamiento en el que se mezclaban lógica del negocio con la presentación. constante uso de instrucciones \gls{SQL} construidas dentro de cada vista susceptibles a inyecciones de \gls{SQL}. Muy bajo reúso de código a lo largo de la aplicación y técnicas de programación desactualizadas para el código PHP escrito en la actualidad especialmente al momento de recuperar información de la base de datos. El código fuente no describía ninguno de los patrones de diseño que podían ayudar para la construcción de sistemas de este tipo, como composición, observador, entre otros. No existía para el sistema en cuestión ningún tipo de pruebas, ni documentación que apoyara al pasante en esta exploración.
+Una vez instalado el ambiente de desarrollo adecuado se procedió a explorar el sistema. Rápidamente se notó que el código fuente escrito estaba muy desorganizado. Código alto acoplamiento en el que se mezclaban lógica del negocio con la presentación. constante uso de instrucciones \gls{SQL} construidas dentro de cada vista susceptibles a inyecciones de \gls{SQL}. Muy bajo reúso de código a lo largo de la aplicación y técnicas de programación desactualizadas para el código PHP escrito en la actualidad especialmente al momento de recuperar información de la base de datos. El código fuente no describía ninguno de los patrones de diseño que podían ayudar para la construcción de sistemas de este tipo, como composición, observador, entre otros. No existía para el sistema en cuestión ningún tipo de pruebas, ni documentación que apoyara esta exploración.
 
 Se descubrió el uso del lenguaje de maquetado Smarty que permite la separación de la capa lógica y la de presentación y se procedió a conseguir referencias para el aprendizaje de esta librería.
 
@@ -34,7 +34,7 @@ Asimismo, se analizó la estructura de los archivos, para mantener la misma estr
 
 \item Levantamiento de requerimientos
 
-Al terminar el análisis de la base de código y entender a grandes rasgos su funcionamiento y estructura se procedió a hacer el levantamiento de los requerimientos necesarios para la extensión. El objetivo era dividir el proyecto en piezas de funcionalidad con el fin de obtener una visión más clara y objetiva de las necesidades del cliente, así como un mapa que permitiera al pasante crear un plan y una estimación para la realización del proyecto. De esta reunión surgió el diagrama de casos de uso (anexo \ref{fig:diagramaCasosDeUso}.)
+Al terminar el análisis de la base de código y entender a grandes rasgos su funcionamiento y estructura se procedió a hacer el levantamiento de los requerimientos necesarios para la extensión. El objetivo era dividir el proyecto en piezas de funcionalidad con el fin de obtener una visión más clara y objetiva de las necesidades del cliente, así como un mapa que permitiera crear un plan y una estimación para la realización del proyecto. De esta reunión surgió el diagrama de casos de uso (anexo \ref{fig:diagramaCasosDeUso}.)
 
 \item Exploración de otras plataformas
 

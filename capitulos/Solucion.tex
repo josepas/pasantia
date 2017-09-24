@@ -14,7 +14,7 @@ A continuación, se expone una división de los retos más importantes y como fu
 	
 	Para soportar esta funcionalidad en la base de datos, se creó una tabla llamada ubicación con los datos que parecieron relevantes para el cliente, ilustrada en el Anexo \ref{fig:baseDeDatosFinal}. Dicha ubicación estaría relacionada con las sesiones, pudiendo una ubicación alojar distintas sesiones. El SGA permite mantener distintos clientes para dar soporte de grandes compañías con filiales, por lo que las ubicaciones se construyen aisladas del grueso de la funcionalidad (los seminarios) para poder ser usadas luego en funcionalidades futuras o integrada en sistemas de los clientes activos de SGAs de \gls{FKC}. Tienen una relación directa con la tabla cliente a través de una llave foránea. Para la clave primaria se usó un identificador creciente autogenerado.
 
-	Se acordó que el manejo de las ubicaciones se llevara a cabo en el área de administración de la aplicación, por el usuario administrador. Se agrego una nueva entrada de manejo de ubicaciones en la interfaz del administrador con este fin.
+	Se acordó que el manejo de las ubicaciones se llevara a cabo en el área de administración de la aplicación, por el usuario administrador. Se agregó una nueva entrada de manejo de ubicaciones en la interfaz del administrador con este fin.
 
 	Se logró conseguir un producto gratis de esta aplicación que permitiera mostrar ubicaciones marcadas en un mapa generado por Google enganchado a un iframe en el sistema, con tan solo especificar medidas latitud y longitud, que tuvieron que ser agregadas luego a la tabla ubicación.
 
@@ -27,7 +27,7 @@ A continuación, se expone una división de los retos más importantes y como fu
 	
 	Luego de examinar las tablas y entender el funcionamiento de los cursos y como son asignados a los grupos (Anexo \ref{fig:baseDeDatosPrevia}) se decidió extender la tabla de curso como una generalización.
 
-	El sistema slo daba soporte a cursos del tipo multimedia dentro del mismo sistema, que podían ser de autoría del cliente o externos. Estos dos tipos eran manejados con un booleano ``cursoDeAutoria'' decisión de diseño que no daba espacio para la expansión de más tipos de cursos. Se sugirió agregar un campo ``tipo'' a la tabla de Curso asignándole el entero \emph{2} al tipo de curso seminario. dejando los enteros \emph{0} y \emph{1} a los anteriores tipos de cursos. La migración de los tipos anteriores para ser representados con el nuevo campo ``tipo'' fue sugerida pero los demás desarrolladores rechazaron la propuesta por provocar cambios en otras funcionalidades del sistema. el estado final de la base de datos se demuestra en el Anexo \ref{fig:baseDeDatosFinal}.
+	El sistema solo daba soporte a cursos del tipo multimedia dentro del mismo sistema, que podían ser de autoría del cliente o externos. Estos dos tipos eran manejados con un booleano ``cursoDeAutoria'' decisión de diseño que no daba espacio para la expansión de más tipos de cursos. Se sugirió agregar un campo ``tipo'' a la tabla de Curso asignándole el entero \emph{2} al tipo de curso seminario. dejando los enteros \emph{0} y \emph{1} a los anteriores tipos de cursos. La migración de los tipos anteriores para ser representados con el nuevo campo ``tipo'' fue sugerida pero los demás desarrolladores rechazaron la propuesta por provocar cambios en otras funcionalidades del sistema. el estado final de la base de datos se demuestra en el Anexo \ref{fig:baseDeDatosFinal}.
 
 	Una vez diferenciado el nuevo tipo curso de los demás en la aplicación se procedió a dar soporte a las actividades \gls{CRUD} para los seminarios. para esto se reutilizó la sección del sistema usada para la creación de cursos. Agregando la opción \emph{seminario} a las opciones previas en la creación de un curso y cambiando la estructura de la forma \gls{HTML} usando Javascript, así como los datos enviados mediante el método POST y su respectiva validación en el servidor para el soporte de los seminarios. La vista se incluyó en el Anexo \ref{fig:creacionSeminario}.
 
@@ -38,13 +38,13 @@ A continuación, se expone una división de los retos más importantes y como fu
 		\item Aprobar asistiendo al curso y aprobando un examen presencial.
 	\end{itemize}
 
-	Para el soporte de estos dos tipos se agregó un campo ``con\_examen'' que permite la representación.
+	Para el soporte de éstos dos tipos se agregó un campo ``con\_examen'' que permite la representación.
 
 	Se aprovechó de los métodos de eliminación, listado y asignación a grupos que el sistema ya poseía, ajustándolos para el funcionamiento con los seminarios. 
 
-	Para lograr esto debió separar visualmente los distintos tipos de cursos en las vistas de listado, para esto agrego un icono que los diferenciara en la vista de cursos del administrador (Anexo \ref{fig:listarCursos}). Además, agregó un filtro persistente en la sesión \gls{HTTP} que permitiera al administrador la visualización de solo cursos del tipo seminario a lo largo de su conexión.
+	Para lograr esto, debió separar visualmente los distintos tipos de cursos en las vistas de listado, para esto, se agregó un icono que los diferenciara en la vista de cursos del administrador (Anexo \ref{fig:listarCursos}). Además, se agregó un filtro persistente en la sesión \gls{HTTP} que permitiera al administrador la visualización de solo cursos del tipo seminario a lo largo de su conexión.
 
-	En el método asignación se agregó luego un \emph{preview} con las sesiones disponibles para el seminario visibles en el apéndice \ref{fig:asignarSeminario} además del icono para los seminarios. 
+	En el método asignación, se agregó luego un \emph{preview} con las sesiones disponibles para el seminario visibles en el apéndice \ref{fig:asignarSeminario} además del icono para los seminarios. 
 
 	% section cursos_del_tipo_seminario (end)
 
@@ -62,7 +62,7 @@ A continuación, se expone una división de los retos más importantes y como fu
 	\section{Sesiones de un seminario} % (fold)
 	\label{sec:sesiones_de_un_seminario}
 	
-	Para soportar la funcionalidad en la base de datos se creó la tabla llamada Sesión que contiene todos los datos relevantes para la descripción de una sesión. Es importante recalcar que las sesiones sólo tienen sentido si forman parte de un curso del tipo seminario, cosa que se evidencia en la relación de agrupación en el modelo final de la base de datos en el Anexo \ref{fig:baseDeDatosFinal}. 
+	Para soportar la funcionalidad en la base de datos, se creó la tabla llamada Sesión que contiene todos los datos relevantes para la descripción de una sesión. Es importante recalcar que las sesiones sólo tienen sentido si forman parte de un curso del tipo seminario, cosa que se evidencia en la relación de agrupación en el modelo final de la base de datos en el Anexo \ref{fig:baseDeDatosFinal}. 
 
 	Un seminario puede estar compuesto por muchas sesiones, mientras que las sesiones no pueden ser compartidas entre los distintos seminarios, por lo que se representa como una relación 1 a muchos. 
 
@@ -72,7 +72,7 @@ A continuación, se expone una división de los retos más importantes y como fu
 
 	La última relación es la más interesante, las sesiones se relacionan directamente con los usuarios que asisten a ella (aprendices) y cada uno debe tener un espacio en la base de datos para modelar el resultado que este obtuvo en la misma. Es una segunda relación de la tabla sesiones con la tabla Usuario que en este caso es muchos a muchos pues un usuario puede participar en cualquier número de sesiones que le hayan sido asignadas, mientras que a una sesión concurren la cantidad de usuarios que su capacidad permita. Se modelo con una tabla auxiliar que posee las dos foráneas y toda la información que la relación \emph{sesión-usuario} necesitó al momento del desarrollo y la que pueda necesitar en el futuro, haciendo el diseño flexible, una de las metas del proyecto.
 
-	Se procedió a integrar el módulo con las ubicaciones. Para poder crear una sesión debía estar creada en primer lugar una ubicación, por lo tanto, se integró una entrada al módulo de ubicaciones desde el \gls{CRUD} de la sesión que mantuviera en forma de \emph{cookie} cual sesión estaba siendo modificada para volver a ella. La capacidad de la sesión no podrá ser mayor a la capacidad de la locación seleccionada.
+	Se procedió a integrar el módulo con las ubicaciones. Para poder crear una sesión, debía estar creada en primer lugar una ubicación, por lo tanto, se integró una entrada al módulo de ubicaciones desde el \gls{CRUD} de la sesión que mantuviera en forma de \emph{cookie} cual sesión estaba siendo modificada para volver a ella. La capacidad de la sesión no podrá ser mayor a la capacidad de la locación seleccionada.
 
 	Además, una sesión no podría ser creada en una fecha en la que la ubicación seleccionada estuviera ocupada (tuviera otra sesión cuyo horario choque). Esta limitación dio pie a que se implementara una visualización de las sesiones activas de una ubicación.
 
@@ -110,7 +110,7 @@ A continuación, se expone una división de los retos más importantes y como fu
 
 	Se crearon dos \emph{endpoints} para la confirmación y cancelación de las sesiones que se acceden mediante el ultimo botón en el listado de la sesión. si no hay una sesión confirmada por el usuario es posible confirmar cualquiera de ellas. Al poseer una sesión confirmada el usuario solo tiene la opción de cancelar la sesión confirmada actual y se hace el chequeo en el \emph{endpoint} de que la cancelación sea posible dados los datos de la sesión al igual que en la confirmación.
 
-	Al ser la mayoría de los clientes usuario del servicio de correo \emph{outlook} fue solicitado por los clientes una facilidad para exportar automáticamente al calendario \emph{outlook} del aprendiz. Para lograr esto se realizo una investigación sobre la especificación de formatos para la transmisión de eventos a través del protocolo \gls{HTTP} \emph{iCalendar} usado previamente por la empresa. \emph{iCalendar} es soportado por las plataformas más famosas como \emph{google, apple, microsoft outlook} entre otras. Se creo un pequeño módulo que recibida los datos de una sesión del sistema y producía un archivo en formato ics para ser descargado por el usuario y usado en su aplicación de calendario de preferencia. Con esto se pudo cumplir el requerimiento del cliente y más.
+	Al ser la mayoría de los clientes usuario del servicio de correo \emph{outlook} fue solicitado por los clientes una facilidad para exportar automáticamente al calendario \emph{outlook} del aprendiz. Para lograr esto se realizo una investigación sobre la especificación de formatos para la transmisión de eventos a través del protocolo \gls{HTTP} \emph{iCalendar} usado previamente por la empresa. \emph{iCalendar} es soportado por las plataformas más famosas como \emph{google, apple, microsoft outlook} entre otras. Se creó un pequeño módulo que recibida los datos de una sesión del sistema y producía un archivo en formato ics para ser descargado por el usuario y usado en su aplicación de calendario de preferencia. Con esto se pudo cumplir el requerimiento del cliente y más.
 
 	En la revisión continua de las funcionalidades realizadas surgió la necesidad por parte del cliente de enviar mensajes al instructor de una sesión directamente desde el listado de las sesiones disponibles. Para esto se realizó una conexción del listado de sesiones disponibles con el módulo de mensajería interna del sistema, colocando automáticamente como destinatario al instructor del curso.
 	% section interfaz_para_el_usuario_aprendiz (end)
@@ -150,7 +150,7 @@ A continuación, se expone una división de los retos más importantes y como fu
 
 	\end{enumerate}
 
-	Se creo una planilla de estilos \gls{CSS} distinta para la vista de impresión de la página de la lista de aprendices de una sesión y que esta pudiera guardarse como un \gls{PDF}. 
+	Se creó una planilla de estilos \gls{CSS} distinta para la vista de impresión de la página de la lista de aprendices de una sesión y que esta pudiera guardarse como un \gls{PDF}. 
 
 	% section calificación_de_las_sesiones (end)
 
