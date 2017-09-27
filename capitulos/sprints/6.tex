@@ -9,19 +9,19 @@
 	\item Implementar funcionalidad para hacer el módulo de seminarios opcional.
 \end{itemize}
 
-En este sprint, una vez que se contó con confirmaciones válidas que procedían desde usuarios aprendices del sistema se procedió a implementar la calificación por parte del usuario instructor y administrador. 
+En este sprint, una vez que se contó con confirmaciones válidas que procedían desde usuarios aprendices del sistema, se procedió a implementar la calificación por parte de los usuarios instructor y administrador. 
 
 \subsection{Actividades} % (fold)
 \label{sub:actividades6}
 
 \begin{itemize}
 
-\item Calificación una sesión
+\item Calificación a los estudiantes de una sesión
 
 
 \item Actualizar la funcionalidad de borrado de una sesión
 
-Se decidió agregar condiciones para el borrado de las sesiones al desarrollar esta funcionalidad. Para borrar una sesión esta no debe tener usuarios que la hayan confirmado. Tampoco debe tener resultados de ningún usuario. Borrar una sesión con resultados eliminaría también el estado de aprobado que pudieran tener algunos usuarios.
+Se decidió agregar condiciones para el borrado de las sesiones al desarrollar esta funcionalidad. Para borrar una sesión esta no debe tener usuarios que la hayan confirmado, tampoco resultados de ningún usuario. Borrar una sesión con resultados, eliminaría también el estado de aprobado que pudieran tener algunos usuarios.
 
 \item Generación de PDF
 
@@ -30,9 +30,9 @@ Se permitió además al usuario instructor la opción de imprimir una lista con 
 
 \item Módulo de seminarios como una opción
 
-Dado que el SGA es un producto que se personaliza para los distintos clientes de la compañía, los clientes se interesaron en tener la opción de crear una nuevo SGA sin la funcionalidad del módulo seminario creado. Para poder ofrecerlo con una opción extra que pudiera flexibilizar el esquema de precios del producto.
+Dado que el SGA es un producto que se personaliza para los distintos clientes de la compañía, FKC se interesó en tener la opción de crear una nuevo SGA sin la funcionalidad del módulo seminario creado, para poder ofrecerlo como una opción extra que pudiera flexibilizar el esquema de precios del producto.
 
-Para esto el se modificó la funcionalidad de otro tipo de usuario: \emph{super admin}. Específicamente la creación y actualización de un cliente. Dependiendo de si los cursos del tipo seminario estaban activados o no, todas las opciones relacionadas con este módulo debían desaparecer. Entre estas:
+Para esto se modificó la funcionalidad de otro tipo de usuario: \emph{super admin}. Específicamente la creación y actualización de un cliente. Si los cursos del tipo seminario no se encuentran activados, todas las opciones relacionadas con este módulo debían desaparecer. Entre estas:
 
 \begin{itemize}
 	\item Creación de un curso del tipo seminario.

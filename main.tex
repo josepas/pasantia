@@ -54,7 +54,7 @@
 \usepackage{titlesec}
 \titleformat{\chapter}[display]   
 {\normalfont\large\bfseries\centering}{\MakeUppercase{\chaptertitlename\ \thechapter}}{-10pt}{\bfseries\normalsize\MakeUppercase}
-\titlespacing*{\chapter}{0pt}{0cm}{0cm}
+\titlespacing*{\chapter}{0pt}{1cm}{0cm}
 
 % Secciones y subsecciones en tamano 12 y negrita
 \titleformat*{\section}{\normalsize\bfseries}
@@ -86,8 +86,8 @@
 
 		\include{Resumen}
 
-		% \include{Dedicatoria}
-		% \include{Agradecimientos}
+		\include{Dedicatoria}
+		\include{Agradecimientos}
 
 		\tableofcontents % Indice
 		\listoffigures
@@ -114,14 +114,15 @@
 		\include{capitulos/Funcionalidades}
 		
 		\glsresetall
-		\include{capitulos/Solucion}
-
-		\glsresetall
 		\include{capitulos/5}
 		
 		\glsresetall
+		\include{capitulos/Solucion}
+
+		\glsresetall
 		\include{Conclusiones}
 
+		\addcontentsline{toc}{chapter}{Referencias} \markboth{Referencias}{}
 		\printbibliography
 		
 		\appendix

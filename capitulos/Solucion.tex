@@ -1,7 +1,7 @@
-\chapter{Solución del problema}
+\chapter{Solución del problema y resultados}
 \thispagestyle{empty} % Quitar el número
 
-En este capítulo se expresan las técnicas utilizadas para el cumplimiento de las funcionalidades expresadas en el capítulo anterior.
+En este capítulo se expresan las técnicas utilizadas para el cumplimiento de las funcionalidades que describen el módulo.
 
 El lenguaje de programación usado como base para el \gls{SGA} de \gls{FKC} es \gls{PHP}.
 
@@ -12,11 +12,11 @@ A continuación, se expone una división de los retos más importantes y como fu
 	\section{Módulo ubicaciones} % (fold)
 	\label{sec:ubicaciones}
 	
-	Para soportar esta funcionalidad en la base de datos, se creó una tabla llamada ubicación con los datos que parecieron relevantes para el cliente, ilustrada en el Anexo \ref{fig:baseDeDatosFinal}. Dicha ubicación estaría relacionada con las sesiones, pudiendo una ubicación alojar distintas sesiones. El SGA permite mantener distintos clientes para dar soporte de grandes compañías con filiales, por lo que las ubicaciones se construyen aisladas del grueso de la funcionalidad (los seminarios) para poder ser usadas luego en funcionalidades futuras o integrada en sistemas de los clientes activos de SGAs de \gls{FKC}. Tienen una relación directa con la tabla cliente a través de una llave foránea. Para la clave primaria se usó un identificador creciente autogenerado.
+	Para soportar esta funcionalidad en la base de datos, se creó una tabla llamada ubicación, con los datos que parecieron relevantes para el cliente, ilustrada en el Anexo \ref{fig:baseDeDatosFinal}. Dicha ubicación estaría relacionada con las sesiones, pudiendo una ubicación alojar distintas sesiones. El SGA permite mantener distintos clientes para dar soporte de grandes compañías con filiales, por lo que las ubicaciones se construyen aisladas del grueso de la funcionalidad (los seminarios) para poder ser usadas luego en funcionalidades futuras o integrada en sistemas de los clientes activos de SGAs de \gls{FKC}. Tienen una relación directa con la tabla cliente a través de una llave foránea. Para la clave primaria se usó un identificador creciente autogenerado.
 
 	Se acordó que el manejo de las ubicaciones se llevara a cabo en el área de administración de la aplicación, por el usuario administrador. Se agregó una nueva entrada de manejo de ubicaciones en la interfaz del administrador con este fin.
 
-	Se logró conseguir un producto gratis de esta aplicación que permitiera mostrar ubicaciones marcadas en un mapa generado por Google enganchado a un iframe en el sistema, con tan solo especificar medidas latitud y longitud, que tuvieron que ser agregadas luego a la tabla ubicación.
+	Se logró conseguir un producto gratis de esta aplicación que permitiera mostrar ubicaciones marcadas en un mapa generado por Google enganchado a un \emph{iframe} en el sistema, con tan solo especificar medidas de latitud y longitud, que tuvieron que ser agregadas luego a la tabla ubicación.
 
 	Para integrar la visualización de mapas usando la aplicación Google maps de manera gratuita para la empresa, el usuario debía ingresar los valores de latitud y longitud de la ubicación deseada. Para esto se ofreció como solución analizar gramaticalmente la \gls{URL} mostrada en la aplicación web google maps por medio de expresiones regulares para extraer los valores necesarios, facilitando así al usuario el proceso de agregar una ubicación sin que la empresa tuviera que usar las funcionalidades pagas de google.
 
@@ -35,7 +35,7 @@ A continuación, se expone una división de los retos más importantes y como fu
 
 	\begin{itemize}
 		\item Aprobar con tan solo asistir al curso.
-		\item Aprobar asistiendo al curso y aprobando un examen presencial.
+		\item Aprobar un examen presencial.
 	\end{itemize}
 
 	Para el soporte de éstos dos tipos se agregó un campo ``con\_examen'' que permite la representación.
@@ -51,7 +51,7 @@ A continuación, se expone una división de los retos más importantes y como fu
 	\section{Usuario instructor} % (fold)
 	\label{sec:usuario_instructor}
 	
-	Para el manejo de la puntuación de las sesiones y el manejo de la asistencia se decidió crear un nuevo tipo de usuario en el sistema que pudiera apoyar al administrador en estas tareas. el usuario administrador tiene acceso a todas las funciones de un instructor en todos los cursos del sistema, mientras que el usuario solo tiene acceso a las sesiones en la que él mismo es el instructor.
+	Para el manejo de la puntuación de las sesiones y el manejo de la asistencia se decidió crear un nuevo tipo de usuario en el sistema que pudiera apoyar al administrador en estas tareas. El usuario administrador tiene acceso a todas las funciones de un instructor en todos los cursos del sistema, mientras que el usuario solo tiene acceso a las sesiones en la que él mismo es el instructor.
 
 	Para esto se debió modificar el módulo de \emph{login} para agregar la autentificación del nuevo usuario, que primero confirma si el usuario tiene una jerarquía más alta que la de instructor (un usuario de más rango que contenga sus funciones), en caso contrario, verifica si el usuario que intenta ingresar es instructor de algún curso.
 
@@ -66,9 +66,9 @@ A continuación, se expone una división de los retos más importantes y como fu
 
 	Un seminario puede estar compuesto por muchas sesiones, mientras que las sesiones no pueden ser compartidas entre los distintos seminarios, por lo que se representa como una relación 1 a muchos. 
 
-	Una sesión se lleva a cabo en una ubicación por lo que se relacionan estas dos tablas. Una sesión puede suceder en solo una ubicación y las ubicaciones pueden albergar una cantidad de sesiones, por lo que la relación se modelo como 1 a muchos.
+	Una sesión se lleva a cabo en una ubicación por lo que se relacionan estas dos tablas. Una sesión puede suceder en solo una ubicación y las ubicaciones pueden albergar una cantidad de sesiones, por lo que la relación se modeló como 1 a muchos.
 
-	Una sesión además es dictada/supervisada por un instructor por lo que se modelo como una relación 1 a muchos análoga a las demás.
+	Una sesión además es dictada/supervisada por un instructor por lo que se modeló como una relación 1 a muchos análoga a las demás.
 
 	La última relación es la más interesante, las sesiones se relacionan directamente con los usuarios que asisten a ella (aprendices) y cada uno debe tener un espacio en la base de datos para modelar el resultado que este obtuvo en la misma. Es una segunda relación de la tabla sesiones con la tabla Usuario que en este caso es muchos a muchos pues un usuario puede participar en cualquier número de sesiones que le hayan sido asignadas, mientras que a una sesión concurren la cantidad de usuarios que su capacidad permita. Se modelo con una tabla auxiliar que posee las dos foráneas y toda la información que la relación \emph{sesión-usuario} necesitó al momento del desarrollo y la que pueda necesitar en el futuro, haciendo el diseño flexible, una de las metas del proyecto.
 
@@ -110,9 +110,9 @@ A continuación, se expone una división de los retos más importantes y como fu
 
 	Se crearon dos \emph{endpoints} para la confirmación y cancelación de las sesiones que se acceden mediante el ultimo botón en el listado de la sesión. si no hay una sesión confirmada por el usuario es posible confirmar cualquiera de ellas. Al poseer una sesión confirmada el usuario solo tiene la opción de cancelar la sesión confirmada actual y se hace el chequeo en el \emph{endpoint} de que la cancelación sea posible dados los datos de la sesión al igual que en la confirmación.
 
-	Al ser la mayoría de los clientes usuario del servicio de correo \emph{outlook} fue solicitado por los clientes una facilidad para exportar automáticamente al calendario \emph{outlook} del aprendiz. Para lograr esto se realizo una investigación sobre la especificación de formatos para la transmisión de eventos a través del protocolo \gls{HTTP} \emph{iCalendar} usado previamente por la empresa. \emph{iCalendar} es soportado por las plataformas más famosas como \emph{google, apple, microsoft outlook} entre otras. Se creó un pequeño módulo que recibida los datos de una sesión del sistema y producía un archivo en formato ics para ser descargado por el usuario y usado en su aplicación de calendario de preferencia. Con esto se pudo cumplir el requerimiento del cliente y más.
+	Al ser la mayoría de los clientes usuarios del servicio de correo \emph{outlook} fue solicitada una facilidad para exportar automáticamente al calendario \emph{outlook} del aprendiz. Para lograr esto se realizó una investigación sobre la especificación de formatos para la transmisión de eventos a través del protocolo \gls{HTTP} \emph{iCalendar} usado previamente por la empresa. \emph{iCalendar} es soportado por las plataformas más famosas como \emph{google, apple, microsoft outlook} entre otras. Se creó un pequeño módulo que recibía los datos de una sesión del sistema y producía un archivo en formato ics para ser descargado por el usuario y usado en su aplicación de calendario de preferencia. Con esto se pudo cumplir el requerimiento del cliente y más.
 
-	En la revisión continua de las funcionalidades realizadas surgió la necesidad por parte del cliente de enviar mensajes al instructor de una sesión directamente desde el listado de las sesiones disponibles. Para esto se realizó una conexción del listado de sesiones disponibles con el módulo de mensajería interna del sistema, colocando automáticamente como destinatario al instructor del curso.
+	En la revisión continua de las funcionalidades realizadas surgió la necesidad por parte del cliente de enviar mensajes al instructor de una sesión directamente desde el listado de las sesiones disponibles. Para esto se realizó una conexión del listado de sesiones disponibles con el módulo de mensajería interna del sistema, colocando automáticamente como destinatario al instructor del curso.
 	% section interfaz_para_el_usuario_aprendiz (end)
 
 	\section{Calificación de las sesiones} % (fold)
@@ -120,7 +120,7 @@ A continuación, se expone una división de los retos más importantes y como fu
 	
 	Un usuario solo debe poseer una única entrada en la tabla Sesión-Usuario que lo relacione inequívocamente con una sesión, para esto se utilizó como clave primaria de la tabla la combinación de las foráneas \emph{sesion\_id} y \emph{usuario\_id}. Además, se implementó una excepción para arrojar un error al usuario y notificar al administrador del sistema por medio de una entrada en la bitácora del sistema si este caso llegara a suceder.
 
-	Una vez asegurada la unicidad de la relación usuario cursa una sesión se puede proceder a calificarla. Tanto el administrador como el instructor pueden calificar una sesión. La calificación de la sesión permite al usuario aprendiz cambiar el estado del seminario que se encuentra en la tabla Curso. Para facilitar la explicación se construyó un diagrama de estados que demuestra los posibles cambios (Anexo \ref{fig:diagramaEstadosSesion}). 
+	Una vez asegurada la unicidad de la relación usuario cursa una sesión, se puede proceder a calificarla. Tanto el administrador como el instructor pueden calificar una sesión. La calificación de la sesión permite al usuario aprendiz cambiar el estado del seminario que se encuentra en la tabla Curso. Para facilitar la explicación se construyó un diagrama de estados que demuestra los posibles cambios (Anexo \ref{fig:diagramaEstadosSesion}). 
 
 	Para la calificación se construyeron dos \emph{endpoints} uno para la modificación de la asistencia y otro que soporta la modificación del estado aprobado/reprobado. que solo pueden ser alcanzados si la fecha de inicio de la sesión ha sido alcanzada.
 
@@ -165,7 +165,7 @@ A continuación, se expone una división de los retos más importantes y como fu
 
 	Este tipo de sesiones debían ser mostradas de forma distinta en las vistas que involucraran las sesiones ya que estas cuentan con datos distintos. por lo que se modificó la visualización del antiguo modal del aprendiz para la ubicación. En el caso de una sesión física se seguiría mostrando el mismo modal y en caso contrario se mostraría el modal con los datos referentes a la sesión en línea solo en el caso en que el usuario haya confirmado dicha sesión.
 
-	En lugares donde se listan las sesiones el campo de ubicación paso a llamarse ``ubicación/url'' y en el caso de una sesión en línea se muestra e texto ``sesión en línea'' en vez del nombre de la ubicación. 
+	En lugares donde se listan las sesiones, el campo de ubicación paso a llamarse ``ubicación/url'' y en el caso de una sesión en línea se muestra el texto ``sesión en línea'' en vez del nombre de la ubicación. 
 
 	% section sesiones_de_seminario_tipo_ (end)
 
@@ -178,15 +178,15 @@ A continuación, se expone una división de los retos más importantes y como fu
 
 	El resto fue ubicar los envíos de correos en los sitios adecuados, llenando los datos correctos según fuera el caso.
 
-	Al comenzar a probar el sistema, los clientes se dieron cuenta que las notificaciones podían llegar a ser demasiadas en cursos compuestos por muchos estudiantes, por lo que luego se desarrolló una opción para desactivar los correos recibidos por el instructor de una sesión. como ejemplo se muestra uno de los correos enviados por la aplicación en el Anexo \ref{fig:correos}.
+	Al comenzar a probar el sistema, los clientes notaron que las notificaciones podían llegar a ser demasiadas en cursos compuestos por muchos estudiantes, por lo que luego se desarrolló una opción para desactivar los correos recibidos por el instructor de una sesión. como ejemplo se muestra uno de los correos enviados por la aplicación en el Anexo \ref{fig:correos}.
 	% section notificaciones (end)
 
 	\section{Estadísticas} % (fold)
 	\label{sec:estadisticas}
 	
-	Se debió modificar algunas consultas en las estadísticas para que estas pudieran reflejar los resultados de los seminarios. generalmente suavizando condiciones de los \emph{joins}. Se diferenciaron los seminarios con el uso de un icono distintivo.
+	Se debió modificar algunas consultas en las estadísticas para que estas pudieran reflejar los resultados de los seminarios. Generalmente suavizando condiciones de los \emph{joins}. Se diferenciaron los seminarios con el uso de un ícono distintivo.
 
-	Además, algunos datos en la tabla de visualización de las estadísticas no concordaban con los datos referentes a los seminarios. Estos datos se omitieron como: momento de inicio, momento de terminación, tiempo de aprendizaje que más adecuados y fácilmente medibles en los cursos web.
+	Además, algunos datos en la tabla de visualización de las estadísticas no concordaban con los datos referentes a los seminarios. Estos datos se omitieron, como: momento de inicio, momento de terminación, tiempo de aprendizaje que son más adecuados y fácilmente medibles en los cursos web.
 	% section estadísticas (end)
 
 	\section{Adaptación de los módulos al SGA de Bibliomed} % (fold)
@@ -198,7 +198,7 @@ A continuación, se expone una división de los retos más importantes y como fu
 
 	\begin{enumerate}
 		\item Aprobar todos los cursos en línea.
-		\item Aprobar el seminario asociado al Módulo.
+		\item Aprobar el seminario asociado al módulo.
 		\item Aprobar ambos, cursos en línea y el seminario.
 	\end{enumerate}
 
@@ -212,7 +212,7 @@ A continuación, se expone una división de los retos más importantes y como fu
 
 	Al realizarse desde la vista de actualización del módulo se asegura que el seminario exista solo en ese módulo, ya que no puede elegirse un seminario previamente creado.
 
-	Se integraron las sesiones confirmadas por el usuario con un módulo de calendario para el usuario implementado en el SGA de Bibliomed. Agregó a las consultas previas que llenaban el calendario una consulta que ofreciera las consultas confirmadas y atendidas por el usuario de manera que se mostraran en su calendario personal. Cuidando mantener la misma estructura de los eventos para su correcta presentación.
+	Se integraron las sesiones confirmadas por el usuario con un módulo de calendario para el usuario implementado en el SGA de Bibliomed. Se agregó a las consultas previas que llenaban el calendario una consulta que ofreciera las consultas confirmadas y atendidas por el usuario de manera que se mostraran en su calendario personal. Cuidando mantener la misma estructura de los eventos para su correcta presentación.
 
 
 
